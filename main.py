@@ -4,6 +4,7 @@
 __author__ = 'Andreia CAMPOS FERREIRA'
 __author__ = 'Franziska NICOLAUS'
 
+# TODO faire traduction function
 
 def transcription(sequence:str) -> str:
     """
@@ -38,6 +39,7 @@ def traduction(sequence_RNA):
                         "GCU":"A", "GCC":"A", "GCA":"A", "GCG":"A",
                         "GAU":"D", "GAC":"D", "GAA":"E", "GAG":"E",
                         "GGU":"G", "GGC":"G", "GGA":"G", "GGG":"G",}
+
 
 
 def main():

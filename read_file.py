@@ -34,3 +34,4 @@ if __name__ == "__main__":
     file_fasta = input("Path file : ")
     fasta(file_fasta)
     
+    
