@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 __author__ = 'Andreia CAMPOS FERREIRA'
+__author__ = 'Franziska NICOLAUS'
 
 
 def transcription(sequence:str) -> str:
@@ -40,27 +41,41 @@ def traduction(sequence_RNA):
 
 
 def main():
+    """
+        Function that provides a choice to the User
+        Args:
+            user_choice (str): the User has to choose a number between 1 and 3
+        Returns:
+            The previous functions according to the choice of the User
+    """
+    # create a variable that asks the user what to choose between different options
     user_choice = input("""Chose what you want to do : \n
                     1 = Transcription
                     2 = Traduction
                     3 = Transcription et Traduction\n""")
     
+    # if the user chooses "1"
     if user_choice == "1":
+        # return the transcription of the DNA
         print(transcription("ATCGACGTAGC"))
     else:
+        # if the user chooses "2"
         if user_choice == "2":
+            # return the traduction of the RNA
             print(traduction)
         else:
+            # if the user chooses "3"
             if user_choice == "3":
+                # return the transcription and the traduction of the DNA
                 print(transcription("ATCGACGTAGC"))
                 print(traduction)
             else:
-                if user_choice == 0 or user_choice== "" :
-                    print("You must choose a number !")
-                    return main()
-                else:
-                    print("You must choose between transcription or translation")
-                    return main()
+                # if the user chooses 0 or nothing
+                if user_choice == "0" or user_choice== "" :
+                    # return an error phrase
+                    print("You must choose a number between 1 and 3")
+                # ask the user again what he wants to choose
+                return main()
                 
             
         

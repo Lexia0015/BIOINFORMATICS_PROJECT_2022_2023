@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 
 __author__ = 'Andreia CAMPOS FERREIRA'
+__author__ = 'Franziska NICOLAUS'
+
+# TODO finish fasta() function 
+# TODO write split() function and try it
 
 def split():
     """
