@@ -11,6 +11,12 @@ def interface_tkinter():
     window.title("Traducteur d'éléments du génome")
     window.geometry("1900x1400")
     
+    label_window = tk.Label(window, text = "Traducteur d'Éléments du Génome")
+    
+    
+    
+    
+    label_window.grid(row = 0, column=0, columnspan=4)
     
     
     
