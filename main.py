@@ -4,7 +4,9 @@
 __author__ = 'Andreia CAMPOS FERREIRA'
 __author__ = 'Franziska NICOLAUS'
 
-# TODO faire traduction function
+# TODO améliorer les fonctions (voir si besoin de mettre lettres minuscules)
+# TODO finir de mettre des commentaires
+# TODO Améliorer fichier (mais dans l'ensemble partie 3 et 4 fait)
 
 def transcription(sequence:str) -> str:
     """
@@ -18,11 +20,12 @@ def transcription(sequence:str) -> str:
     # if "T" is in the sequence
     if "T" in sequence:
         # replace "T" into "A" and keep the changment in a variable named sequence_RNA
-        sequence_RNA = sequence.replace("T", "U")
+        sequence_DNA = sequence.replace("\n", "")
+        sequence_RNA = sequence_DNA.replace("T", "U")
     # return the RNA sequence
     return sequence_RNA
 
-def traduction(sequence_RNA):
+def traduction(sequence_test:str):
     list_amino_acids = {"UUU":"F", "UUC":"F", "UUA":"L", "UUG":"L",
                         "UCU":"S", "UCC":"S", "UCA":"S", "UCG":"S",
                         "UAU":"Y", "UAC":"Y", "UAA":"STOP", "UAG":"STOP",
@@ -40,8 +43,21 @@ def traduction(sequence_RNA):
                         "GAU":"D", "GAC":"D", "GAA":"E", "GAG":"E",
                         "GGU":"G", "GGC":"G", "GGA":"G", "GGG":"G",}
 
-
-
+    protein_string = ""
+    # protein = ""
+    for letter in range(0, len(sequence_test), 3):
+        if len(sequence_test)%3 != 0:
+            return "The length of the sequence must be a multiple of 3"
+        codon = sequence_test[letter:letter+3]
+        protein = list_amino_acids[codon]
+        if protein == "STOP":
+            break
+        protein_string += list_amino_acids[codon]
+        
+    print(protein_string)
+    
+    
+    
 def main():
     """
         Function that provides a choice to the User
@@ -64,13 +80,15 @@ def main():
         # if the user chooses "2"
         if user_choice == "2":
             # return the traduction of the RNA
-            print(traduction)
+            transcripion_seq = transcription("ATGTACTCATTCGTTTCGGAAGAGACAGGTACGTTAATAGTTAATAGCGTACTTCTTTTTCTTGCTTTCGTGGTATTCTTGCTAGTTACACTAGCCATCCTTACTGCGCTTCGATTGTGTGCGTACTGCTGCAATATTGTTAACGTGAGTCTTGTAAAACCTTCTTTTTACGTTTACTCTCGTGTTAAAAATCTGAATTCTTCTAGAGTTCCTGATCTTCTGGTCTAA")
+            print(traduction(transcripion_seq))
         else:
             # if the user chooses "3"
             if user_choice == "3":
                 # return the transcription and the traduction of the DNA
-                print(transcription("ATCGACGTAGC"))
-                print(traduction)
+                transcripion_seq = transcription("ATGTACTCATTCGTTTCGGAAGAGACAGGTACG")
+                print(transcripion_seq)
+                print(traduction(transcripion_seq))
             else:
                 # if the user chooses 0 or nothing
                 if user_choice == "0" or user_choice== "" :
