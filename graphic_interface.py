@@ -12,8 +12,9 @@ import tkinter as tk
 # TODO Create the interface completely and manage all the functions in (delete, save, open from file, etc)
 
 
+
 def interface_tkinter():
-    window = tk.Tk()
+    window = tk.Tk() 
     window.title("Traducteur d'éléments du génome")
     window.geometry("1900x1400") # TODO revoir taille pour début
     window.iconbitmap("data\images\dna_icon.ico")
@@ -51,6 +52,8 @@ def interface_tkinter():
     page_2_files = tk.Frame(main_frame)
     page_2_files = tk.Label(page_2_files, text="Select the Fasta and GTF/GFF files", font = ("Arial", 22))
     page_2_files.pack()
+    
+    # TODO make sure we switch to the right page
     
     pages = [page_2_files, page_2_sequence]
     count = 0
