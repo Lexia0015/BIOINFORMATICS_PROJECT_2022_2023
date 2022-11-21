@@ -16,7 +16,7 @@ import tkinter as tk
 def interface_tkinter():
     window = tk.Tk() 
     window.title("Traducteur d'éléments du génome")
-    window.geometry("1900x1400") # TODO revoir taille pour début
+    window.geometry("1400x900") # TODO revoir taille pour début
     window.iconbitmap("data\images\dna_icon.ico")
     
     main_frame = tk.Frame(window)
@@ -28,44 +28,44 @@ def interface_tkinter():
     label_choose = tk.Label(main_frame, text = "What do you want to choose ?", font=("Arial", 15))
     label_choose.pack(pady=50)
     
-    var = tk.StringVar(main_frame, "1")
-    radiobutton_files = tk.Radiobutton(main_frame, text="Select the Files", value="Files", variable=var)
-    radiobutton_files.pack(pady = 30)
     
-    radiobutton_sequence = tk.Radiobutton(main_frame, text="Write a DNA/RNA sequence", value="Sequence", variable=var)
-    radiobutton_sequence.pack(pady = 30)
+    def go_page_2_sequence():
+        top_page_2_sequence = Toplevel()
+        top_page_2_sequence.geometry("900x1200")
+        top_page_2_sequence.title("Sequence Page")
+        page_2_sequence_label = tk.Label(top_page_2_sequence, text="Write a DNA/RNA sequence", font = ("Arial", 22))
+        page_2_sequence_label.pack()
+        top_page_2_sequence.mainloop()
+        
+        
+        # Mettre soit des boutons soit des radiobutons
+        
+        
+    def go_page_2_files():
+        top_page_2_files = Toplevel()
+        top_page_2_files.geometry("900x1200")
+        top_page_2_files.title("Files Page")
+        page_2_sequence_label = tk.Label(top_page_2_files, text="Select the Files", font = ("Arial", 22))
+        page_2_sequence_label.pack()
+        top_page_2_files.mainloop()
+    
+    
+
+    button_files = tk.Button(main_frame, text="Select the Files", command = go_page_2_files)
+    button_files.pack(pady = 30)
+    
+    button_sequence = tk.Button(main_frame, text="Write a DNA/RNA sequence", command = go_page_2_sequence)
+    button_sequence.pack(pady = 30)
 
     
     buttom_frame = tk.Frame(window)
     buttom_frame.pack(side=tk.BOTTOM, padx=10)
     
-    back_buttom = tk.Button(buttom_frame, text = "Back", relief=tk.RAISED)
-    back_buttom.pack(side = tk.LEFT, padx = 10)
+    buttom_quit = tk.Button(buttom_frame, text = "Quit", relief=tk.RAISED, command = window.destroy)
+    buttom_quit.pack(side = tk.BOTTOM, padx = 10)
     
-    next_button = tk.Button(buttom_frame, text = "Next", relief=tk.RAISED, command=lambda:page_2())
-    next_button.pack(side = tk.RIGHT, pady=10)
     
-    page_2_sequence = tk.Frame(main_frame)
-    page_2_sequence_label = tk.Label(page_2_sequence, text="Write a DNA/RNA sequence", font = ("Arial", 22))
-    page_2_sequence_label.pack()
-    
-    page_2_files = tk.Frame(main_frame)
-    page_2_files = tk.Label(page_2_files, text="Select the Fasta and GTF/GFF files", font = ("Arial", 22))
-    page_2_files.pack()
-    
-    # TODO make sure we switch to the right page
-    
-    pages = [page_2_files, page_2_sequence]
-    count = 0
-    
-    def page_2():
-        global count
-        if not var.get():
-            page = page_2_sequence
-            page.pack(pady = 100)
-        else:
-            page = page_2_files
-            page.pack(pady = 100)
+
 
     window.mainloop()
 
