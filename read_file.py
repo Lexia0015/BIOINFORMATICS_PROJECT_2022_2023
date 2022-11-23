@@ -8,6 +8,7 @@ __author__ = 'Franziska NICOLAUS'
 # TODO split() function with pandas and try it
 
 import pandas as pd
+import numpy as np
 
 
 def split(file_gtf):
@@ -23,12 +24,16 @@ def split(file_gtf):
     gtf_content = []
     for line in file_content:
         if line.find("#") != 0:
-            gtf_content.append(line)
-            
-    pandas_columns = ["chromosome", "from", "type", "start", "end", ".", "strand", ".", "gene_id", "ens", "transcript_id"]
-    pandas_gtf = pd.DataFrame (gtf_content)
-    print(pandas_gtf)
-    # return gtf_content
+            gtf_content.append(line.split("\t"))
+    
+    # print(gtf_content)
+    pandas_columns = ["chromosome", "source", "feature", "start", "end", "score", "strand", "frame", "attribute"]
+    pandas_gtf = pd.DataFrame(gtf_content, columns=pandas_columns)
+    start_position = pandas_gtf.iloc[:,3]
+    end_position = pandas_gtf.iloc[:,4] 
+    # print(start_position)
+
+
 
 
 def fasta(file_fasta):
