@@ -4,10 +4,13 @@
 __author__ = 'Andreia CAMPOS FERREIRA'
 __author__ = 'Franziska NICOLAUS'
 
-# TODO write control() function
+# TODO write control() function = see algorithm project (for Andreia)
 # TODO write erreur() function
 
-def control():
+from read_file import *
+import read_file as rf
+
+def control(sequence):
     """
         Function that will verify is the input data is correct
         Args:
@@ -16,6 +19,7 @@ def control():
             Error_control (str) : an error message if the data is not correct or a simply message that says Correct ! 
             TODO simply message a voir
     """
+    # if rf.fasta(sequence) 
     pass
 
 
