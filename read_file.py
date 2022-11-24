@@ -64,8 +64,10 @@ def split(file_gtf):
     # fasta part
     
     sequence_fasta = fasta(file_fasta)
-    for letter in sequence_fasta:
-        sequence_target = letter[start_position[1]:end_position[1]]
+    # sequence_fasta[int(start_position_list[1]):int(end_position_list[1])] #   CA A MMMARRRRRCHHHHHHHEEEEE !!!!!! OUI JJE SUIIIS TRRRROP CONNNTENTE !!!!
+    # for letter in sequence_fasta:
+    #     print(letter.split())
+        # sequence_target = letter[int(start_position[1]):int(end_position[1])]
         # print(sequence_target)
 
 
