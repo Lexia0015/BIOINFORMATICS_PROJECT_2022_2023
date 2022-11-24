@@ -1,0 +1,27 @@
+##gff-version 3
+##sequence-region   X 1 111700775
+#!genome-build  OryCun2.0
+#!genome-version OryCun2.0
+#!genome-date 2009-11
+#!genome-build-accession GCA_000003625.1
+#!genebuild-last-updated 2019-05
+X	OryCun2.0	chromosome	1	111700775	.	.	.	ID=chromosome:X;Alias=CM000811.1,NC_013690.1
+###
+X	.	biological_region	707	984	0.63	+	.	external_name=rank %3D 1;logic_name=firstef
+X	cpg	biological_region	85924	86358	250	.	.	external_name=oe %3D 0.75;logic_name=cpg
+X	Eponine	biological_region	85990	85994	0.999	-	.	logic_name=eponine
+X	Eponine	biological_region	113763	113766	0.999	+	.	logic_name=eponine
+X	ensembl	gene	191540	191794	.	+	.	ID=gene:ENSOCUG00000023149;biotype=protein_coding;gene_id=ENSOCUG00000023149;logic_name=ensembl;version=2
+X	ensembl	mRNA	191540	191794	.	+	.	ID=transcript:ENSOCUT00000030255;Parent=gene:ENSOCUG00000023149;biotype=protein_coding;tag=Ensembl_canonical;transcript_id=ENSOCUT00000030255;version=2
+X	ensembl	exon	191540	191794	.	+	.	Parent=transcript:ENSOCUT00000030255;Name=ENSOCUE00000314165;constitutive=1;ensembl_end_phase=0;ensembl_phase=0;exon_id=ENSOCUE00000314165;rank=1;version=2
+X	ensembl	CDS	191540	191794	.	+	0	ID=CDS:ENSOCUP00000019880;Parent=transcript:ENSOCUT00000030255;protein_id=ENSOCUP00000019880
+###
+X	Eponine	biological_region	278340	278345	0.999	+	.	logic_name=eponine
+X	Eponine	biological_region	278374	278379	0.999	-	.	logic_name=eponine
+X	Eponine	biological_region	278425	278428	0.999	-	.	logic_name=eponine
+X	Eponine	biological_region	278452	278456	0.999	-	.	logic_name=eponine
+X	ensembl	ncRNA_gene	284889	287260	.	-	.	ID=gene:ENSOCUG00000037545;biotype=lncRNA;gene_id=ENSOCUG00000037545;logic_name=ensembl;version=1
+X	ensembl	lnc_RNA	284889	287260	.	-	.	ID=transcript:ENSOCUT00000037012;Parent=gene:ENSOCUG00000037545;biotype=lncRNA;tag=Ensembl_canonical;transcript_id=ENSOCUT00000037012;version=1
+X	ensembl	exon	284889	286582	.	-	.	Parent=transcript:ENSOCUT00000037012;Name=ENSOCUEE00000367580;constitutive=1;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=ENSOCUEE00000367580;rank=2;version=1
+X	ensembl	exon	286750	287260	.	-	.	Parent=transcript:ENSOCUT00000037012;Name=ENSOCUEE00000380691;constitutive=1;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=ENSOCUEE00000380691;rank=1;version=1
+###
