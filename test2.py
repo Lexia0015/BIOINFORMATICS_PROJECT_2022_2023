@@ -1,16 +1,31 @@
-def cdna_longura():
-    dict_longura = {}
-    with open("example.gtf", "r") as file_nx_tx:
-        for line in file_nx_tx:
-            line_split_transcript = line.split("transcript_id")[-1]
-            line_split_sep = line_split_transcript.split(";")[:1]
-            str_ens = "".join(line_split_sep)
-            print(str_ens)
-            str_ens.replace("' ", "")
-            # line_split_start = line.split("\t")[3]
-            # line_split_end = line.split("\t")[4]
-            # longura_cdna = (int(line_split_end) - int(line_split_start))
-            # dict_longura[str_ens] = longura_cdna
-        return dict_longura
-    
-print(cdna_longura())
+# import tkinter as tk
+
+
+# def start():
+#     global i, callback_id
+#     text_label.config(text=i)
+#     i += 1
+#     callback_id = text_label.after(1000, start)
+
+
+# def reset():
+#     global i, callback_id
+#     i = 0
+#     if callback_id is not None:
+#         text_label.after_cancel(callback_id)
+#         callback_id = None
+#     start()
+
+
+# window = tk.Tk()
+# window.geometry('400x400')
+
+# text_label = tk.Label(window, text="start")
+# text_label.pack()
+
+# callback_id, i = None, 0
+# tk.Button(window, text="reset", command=reset).pack()
+
+# window.mainloop()
+
+

@@ -4,22 +4,23 @@
 __author__ = 'Andreia CAMPOS FERREIRA'
 __author__ = 'Franziska NICOLAUS'
 
-# TODO fasta() function to multiple files
-# TODO split() function with pandas and try it
+# TODO fasta() function check the tkinter part
+# TODO split() function check with the tkinter part 
 
 import pandas as pd
 import numpy as np
 
+# from graphic_interface import select_file_fasta
 
 
 
-def fasta(file_fasta):
+
+def fasta(file_name):
     """
         Function that will read the Fasta file
         Args : Fasta file
     """
-
-    file_fasta_read = open(file_fasta, "r") 
+    file_fasta_read = open(file_name, "r") 
     fasta_content_file = file_fasta_read.readlines()
     # fasta_seq_line = fasta_content_file.split("\n")
     list_sequence = []
@@ -27,7 +28,8 @@ def fasta(file_fasta):
         if line.find(">") != 0:
             list_sequence.append(line)
     fasta_sequence = "".join(list_sequence)
-    sequence = fasta_sequence.replace("\n", "")
+    fasta_seq = fasta_sequence.upper()
+    sequence = fasta_seq.replace("\n", "")
     return sequence
 
 
@@ -51,7 +53,7 @@ def split(file_gtf):
     # print(gtf_content)
     pandas_columns = ["chromosome", "source", "feature", "start", "end", "score", "strand", "frame", "attribute"]
     pandas_gtf = pd.DataFrame(gtf_content, columns=pandas_columns)
-    print(pandas_gtf)
+    # print(pandas_gtf)
     start_position = pandas_gtf.iloc[:,3]
     end_position = pandas_gtf.iloc[:,4] 
     # print(start_position)
@@ -59,16 +61,13 @@ def split(file_gtf):
     start_position_list = start_position.values.tolist()
     end_position_list = end_position.values.tolist()
     # print(start_position_list[1])
-    # print(end_position_list)
+    print(end_position_list)
     
     # fasta part
-    
-    sequence_fasta = fasta(file_fasta)
-    # sequence_fasta[int(start_position_list[1]):int(end_position_list[1])] #   CA A MMMARRRRRCHHHHHHHEEEEE !!!!!! OUI JJE SUIIIS TRRRROP CONNNTENTE !!!!
-    # for letter in sequence_fasta:
-    #     print(letter.split())
-        # sequence_target = letter[int(start_position[1]):int(end_position[1])]
-        # print(sequence_target)
+    sequence_fasta = fasta(file_name)
+    # print(sequence_fasta, "\n")
+    for i in range(1, 4):
+        return sequence_fasta[int(start_position_list[i]):int(end_position_list[i])]
 
 
 
@@ -76,10 +75,9 @@ def split(file_gtf):
 
 
 if __name__ == "__main__":
-    # split()
-    file_fasta = input("Path file : ")
+    file_name = input("Path file fasta: " )
     file_gtf = input("Path file gtf: ")
-    # print(fasta(file_fasta))
+    # # print(fasta(file_fasta))
     print(split(file_gtf))
     
     

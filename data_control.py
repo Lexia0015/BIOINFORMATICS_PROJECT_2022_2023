@@ -23,7 +23,7 @@ def control(sequence):
     pass
 
 
-def erreur():
+def erreur(sequence):
     """
         Function that will show different error messages if the sequence doesn't correspond with the user choices.
         Args:
@@ -31,6 +31,14 @@ def erreur():
         Returns:
             Error (str) : an error message if it doesn't match
     """
-    pass
+    # if the len of the sequence is None
+    if len(sequence) == 0:
+        # Raise an exception based on the class SequenceIncorrect with the following message
+        raise Exception("La séquence rentrée est incorrecte (= 0)")
 
-
+    # for each character on the sequence
+    for c in sequence:
+        # if the character is different thant A, and B, and C, and N, and T
+        if c != 'A' and c != 'G' and c != 'C' and c != 'T' and c != "N":
+            # Raise and exception based on the class SequenceIncorrect with the following message
+            raise Exception("La sequence contient des autres lettres que A G C T")
