@@ -53,10 +53,10 @@ def interface_tkinter():
         file_name_fasta = filedialog.askopenfilename(title="Select a file", filetypes=(("fasta files", "*.fa"), ("all files", "*.*")))
         file_name = rf.fasta(file_name_fasta)
         
-        file_name_gtf_gff = filedialog.askopenfilename(title="Select a file", filetypes=(("gtf files", "*.gtf"), ("gff files", "*.gff3"), ("all files", "*.*")))
-        file_read_gff_gtf = rf.split(file_name_gtf_gff, file_name)
+        file_gtf = filedialog.askopenfilename(title="Select a file", filetypes=(("gtf files", "*.gtf"), ("gff files", "*.gff3"), ("all files", "*.*")))
+        file_gtf_result = rf.split(file_name, file_gtf_result)
 
-        enter_fasta.insert(INSERT, file_read_gff_gtf)
+        enter_fasta.insert(tk.INSERT, file_gtf_result)
         
         
     
@@ -92,18 +92,12 @@ def interface_tkinter():
     button_quit.grid(row = 5, column = 2, pady = 15)
     
     
-    def combobox_get(label_file): # choisir le type de traduction en fonction du combobox
-        if buttom_fasta_file == TRUE:
-            pass
-    
     combobox_choices = ttk.Combobox(window, values=["ADN -> ARN", 
                                                     "ARN -> Protein",
                                                     "ADN -> Protein"])
-    
-
-    
     combobox_choices.grid(row = 2, column = 2, padx = 10)
         
+
 
 
     window.mainloop()

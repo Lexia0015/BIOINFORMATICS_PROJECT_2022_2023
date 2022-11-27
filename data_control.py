@@ -7,10 +7,13 @@ __author__ = 'Franziska NICOLAUS'
 # TODO write control() function = see algorithm project (for Andreia)
 # TODO write erreur() function
 
+import pathlib
+
 from read_file import *
 import read_file as rf
 
-def control(sequence):
+
+def control():
     """
         Function that will verify is the input data is correct
         Args:
@@ -19,8 +22,14 @@ def control(sequence):
             Error_control (str) : an error message if the data is not correct or a simply message that says Correct ! 
             TODO simply message a voir
     """
-    # if rf.fasta(sequence) 
-    pass
+    file_name = input("Path fa file : ")
+    file_gtf = input("Path gtf file : ")
+    if rf.fasta(file_name):
+        if pathlib.Path(file_name).suffix != ".fa":
+            raise Exception("You have to take a fasta file")
+    if rf.split(file_gtf, file_name):
+        if pathlib.Path(file_gtf).suffix != (".gtf",".gff",".gff3"):
+            raise Exception("You have to take a gtf or a gff file")
 
 
 def erreur(sequence):
@@ -42,3 +51,7 @@ def erreur(sequence):
         if c != 'A' and c != 'G' and c != 'C' and c != 'T' and c != "N":
             # Raise and exception based on the class SequenceIncorrect with the following message
             raise Exception("La sequence contient des autres lettres que A G C T")
+
+
+print(control())
+
