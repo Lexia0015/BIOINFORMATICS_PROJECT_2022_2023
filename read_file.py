@@ -4,8 +4,9 @@
 __author__ = 'Andreia CAMPOS FERREIRA'
 __author__ = 'Franziska NICOLAUS'
 
-# TODO fasta() function check the tkinter part
+
 # TODO split() function check with the tkinter part 
+# TODO fasta() function to read multiple fastas
 
 import pandas as pd
 import numpy as np
@@ -61,9 +62,10 @@ def split(file_gtf, file_name):
     start_position_list = start_position.values.tolist()
     end_position_list = end_position.values.tolist()
     # print(start_position_list[1])
-    print(end_position_list)
+    # print(end_position_list)
     
     # fasta part
+    global sequence_fasta
     sequence_fasta = fasta(file_name)
     # print(sequence_fasta, "\n")
     for i in range(1, 4):

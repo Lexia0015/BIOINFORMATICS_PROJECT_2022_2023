@@ -4,8 +4,7 @@
 __author__ = 'Andreia CAMPOS FERREIRA'
 __author__ = 'Franziska NICOLAUS'
 
-# TODO write control() function = see algorithm project (for Andreia)
-# TODO write erreur() function
+# TODO voir comment ça s'encadre avec Tkinter
 
 import pathlib
 
@@ -17,7 +16,7 @@ def control():
     """
         Function that will verify is the input data is correct
         Args:
-            Input data : TODO To specify
+            Input data : files data
         Returns:
             Error_control (str) : an error message if the data is not correct or a simply message that says Correct ! 
             TODO simply message a voir
@@ -29,10 +28,10 @@ def control():
             raise Exception("You have to take a fasta file")
     if rf.split(file_gtf, file_name):
         if pathlib.Path(file_gtf).suffix not in [".gtf",".gff",".gff3"]:
-            raise Exception("You have to take a gtf or a gff file")
+            raise Exception("You have to take a gtf or a gff file") # TODO Voir pourquoi l'erreur "IndexError: list index out of range"
 
 
-def erreur(sequence):
+def erreur(): # TODO HAVE TO MAKE FOR GTF FILE
     """
         Function that will show different error messages if the sequence doesn't correspond with the user choices.
         Args:
@@ -40,18 +39,24 @@ def erreur(sequence):
         Returns:
             Error (str) : an error message if it doesn't match
     """
+    file_name = input("Path fa file : ")
+    file_gtf = input("Path gtf file : ")
+    fasta_file = rf.fasta(file_name)
     # if the len of the sequence is None
-    if len(sequence) == 0:
+    if len(fasta_file) == 0:
         # Raise an exception based on the class SequenceIncorrect with the following message
         raise Exception("La séquence rentrée est incorrecte (= 0)")
 
     # for each character on the sequence
-    for c in sequence:
+    for c in fasta_file:
         # if the character is different thant A, and B, and C, and N, and T
         if c != 'A' and c != 'G' and c != 'C' and c != 'T' and c != "N":
             # Raise and exception based on the class SequenceIncorrect with the following message
             raise Exception("La sequence contient des autres lettres que A G C T")
+        
+    
 
 
-print(control())
+# print(control())
+print(erreur())
 
