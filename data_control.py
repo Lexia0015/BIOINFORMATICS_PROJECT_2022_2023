@@ -28,7 +28,7 @@ def control():
         if pathlib.Path(file_name).suffix != ".fa":
             raise Exception("You have to take a fasta file")
     if rf.split(file_gtf, file_name):
-        if pathlib.Path(file_gtf).suffix != (".gtf",".gff",".gff3"):
+        if pathlib.Path(file_gtf).suffix not in [".gtf",".gff",".gff3"]:
             raise Exception("You have to take a gtf or a gff file")
 
 

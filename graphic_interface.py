@@ -27,6 +27,7 @@ def interface_tkinter():
     window.title("DNA converter")
     window.geometry("1000x700") # TODO revoir taille pour début
     window.iconbitmap("images\dna_icon.ico")
+    window.config(bg = "lightblue")
     
     label_window = tk.Label(window, text = "DNA converter", font=("Arial", 22))
     label_window.grid(row=0, column=0, columnspan=4)
@@ -35,7 +36,7 @@ def interface_tkinter():
     label_choose.grid(row= 1, column= 0, columnspan=2)
     
     enter_fasta = tk.Text(window, width = 80, height = 20, font = ("Arial", 12))
-    enter_fasta.grid(row = 2, column = 0, columnspan = 2)
+    enter_fasta.grid(row = 2, column = 0, columnspan = 2, padx = 40)
 
     def clear_text():
         if enter_fasta != 0:
@@ -49,7 +50,7 @@ def interface_tkinter():
     buttom_fasta_file = tk.Button(window, text = "Add a Fasta file", command = select_file_fasta)
     buttom_fasta_file.grid(row = 3, column = 0, pady = 20)   
     
-    def select_gtf_gff_fasta(): # faire en sorte de détecter qu'on a selectionne le fasta file
+    def select_gtf_gff_fasta(): # faire en sorte de détecter qu'on a selectionne le fasta file / VOIR SI GLOBAL MARCHE
         file_name_fasta = filedialog.askopenfilename(title="Select a file", filetypes=(("fasta files", "*.fa"), ("all files", "*.*")))
         file_name = rf.fasta(file_name_fasta)
         
