@@ -48,16 +48,18 @@ def interface_tkinter():
     buttom_fasta_file.grid(row = 3, column = 0, pady = 20)   
     
     
-    def select_gtf_gff_fasta(): # faire en sorte de détecter qu'on a selectionne le fasta file / VOIR SI GLOBAL MARCHE
+    def select_gtf_gff_fasta(): # TODO faire en sorte de détecter qu'on a selectionne le fasta file / VOIR SI GLOBAL MARCHE
         
-        file_name_fasta = filedialog.askopenfilename(title="Select a file", filetypes=(("fasta files", "*.fa"), ("all files", "*.*")))
-        file_name = rf.fasta(file_name_fasta)
-        enter_fasta.insert(INSERT, file_name)
+        # file_name_fasta = filedialog.askopenfilename(title="Select a file", filetypes=(("fasta files", "*.fa"), ("all files", "*.*")))
+        # file_name = rf.fasta(file_name_fasta)
+        if enter_fasta.get("1.0",'end-1c') != 0:
+            file_name = enter_fasta.get("1.0",'end-1c')
         
         file_gtf = filedialog.askopenfilename(title="Select a file", filetypes=(("gtf files", "*.gtf"), ("gff files", "*.gff3"), ("all files", "*.*")))
         file_gtf_res = rf.split(file_name, file_gtf)
+        print(file_gtf_res)
 
-        enter_fasta.insert(INSERT, file_gtf_res)
+        # enter_fasta.insert(INSERT, file_gtf_res)
         
 
     buttom_gtf_gff_file = tk.Button(window, text = "Add a GTF/GFF file", command = select_gtf_gff_fasta)

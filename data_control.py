@@ -31,7 +31,7 @@ def control():
             raise Exception("You have to take a gtf or a gff file") # TODO Voir pourquoi l'erreur "IndexError: list index out of range"
 
 
-def erreur(): # TODO HAVE TO MAKE FOR GTF FILE
+def erreur(): # TODO HAVE TO MAKE FOR GTF FILE / SEE WHY IT DOESN'T WORK
     """
         Function that will show different error messages if the sequence doesn't correspond with the user choices.
         Args:
@@ -58,5 +58,5 @@ def erreur(): # TODO HAVE TO MAKE FOR GTF FILE
 
 
 # print(control())
-print(erreur())
+# print(erreur())
 

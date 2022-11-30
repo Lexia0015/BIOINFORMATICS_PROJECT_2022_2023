@@ -65,7 +65,7 @@ def split(file_gtf, file_name):
     # print(end_position_list)
     
     # fasta part
-    global sequence_fasta
+    # global sequence_fasta
     sequence_fasta = fasta(file_name)
     # print(sequence_fasta, "\n")
     for i in range(1, 4):
@@ -80,7 +80,7 @@ def split(file_gtf, file_name):
 if __name__ == "__main__":
     file_name = input("Path file fasta: " )
     file_gtf = input("Path file gtf: ")
-    # # print(fasta(file_fasta))
+    print(fasta(file_name))
     print(split(file_gtf, file_name))
     
     
