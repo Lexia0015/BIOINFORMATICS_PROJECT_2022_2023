@@ -4,12 +4,14 @@
 __author__ = 'Andreia CAMPOS FERREIRA'
 __author__ = 'Franziska NICOLAUS'
 
+import pandas as pd
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
 from tkinter import filedialog
 from tkinter.messagebox import showinfo
 from tkinter import scrolledtext
+from pathlib import Path
 
 from read_file import *
 import read_file as rf
@@ -20,6 +22,7 @@ import converter as mn
         # XXX Organiser des idées pour la partie terminal (par où on commence et par où on finir)
 # TODO Create the interface completely and manage all the functions in (delete, save, open from file, etc)
 # TODO REVOIR FUNCTION POUR GTF FILE
+
 
 
 def interface_tkinter():
@@ -52,15 +55,21 @@ def interface_tkinter():
         
         # file_name_fasta = filedialog.askopenfilename(title="Select a file", filetypes=(("fasta files", "*.fa"), ("all files", "*.*")))
         # file_name = rf.fasta(file_name_fasta)
-        if enter_fasta.get("1.0",'end-1c') != 0:
-            file_name = enter_fasta.get("1.0",'end-1c')
+        # enter_fasta.insert(INSERT, file_name)
         
-        file_gtf = filedialog.askopenfilename(title="Select a file", filetypes=(("gtf files", "*.gtf"), ("gff files", "*.gff3"), ("all files", "*.*")))
-        file_gtf_res = rf.split(file_name, file_gtf)
+        # if enter_fasta.get("1.0", tk.END) != 0:
+        file_name = enter_fasta.get("1.0", tk.END)
+            
+        file_gtf = filedialog.askopenfilename(title="Select a file", filetypes=(("gtf files", "*.gtf"), ("gff files", "*.gff3"), ("gff files", "*.gff"), ("all files", "*.*")))
+        file_gtf_res = rf.split(file_gtf, file_name)
         print(file_gtf_res)
-
-        # enter_fasta.insert(INSERT, file_gtf_res)
         
+        # enter_fasta.delete('1.0', tk.END)
+        # enter_fasta.insert(INSERT, file_gtf_res)
+
+    
+        
+
 
     buttom_gtf_gff_file = tk.Button(window, text = "Add a GTF/GFF file", command = select_gtf_gff_fasta)
     buttom_gtf_gff_file.grid(row = 4, column = 0, pady = 20)
@@ -118,3 +127,7 @@ def interface_tkinter():
 
 if __name__ == '__main__':
     interface_tkinter()
+    # file_name = input("Path fa :")
+    # file_gtf = input("Path gtf : ")
+    # file_gtf_res = rf.split(file_gtf, file_name)
+    # print(file_gtf_res)

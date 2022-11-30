@@ -36,7 +36,7 @@ def fasta(file_name):
 
 
 
-def split(file_gtf, file_name):
+def split(file_gtf, fasta_sequence):
     """
         It will read the gtf or gff file
         Take the position of the gene and extract the portion of the gene in the fasta file
@@ -61,16 +61,17 @@ def split(file_gtf, file_name):
     # print(end_position)
     start_position_list = start_position.values.tolist()
     end_position_list = end_position.values.tolist()
+
     # print(start_position_list[1])
     # print(end_position_list)
     
     # fasta part
-    # global sequence_fasta
-    sequence_fasta = fasta(file_name)
+    liste = []
     # print(sequence_fasta, "\n")
     for i in range(1, 4):
-        return sequence_fasta[int(start_position_list[i]):int(end_position_list[i])]
-    
+        liste.append(fasta_sequence[int(start_position_list[i]):int(end_position_list[i])])
+    fasta_sequence_gtf = "".join(liste)
+    return fasta_sequence_gtf
 
 
 
@@ -80,7 +81,9 @@ def split(file_gtf, file_name):
 if __name__ == "__main__":
     file_name = input("Path file fasta: " )
     file_gtf = input("Path file gtf: ")
-    print(fasta(file_name))
-    print(split(file_gtf, file_name))
+    fasta_sequence = fasta(file_name)
+    # print(fasta(file_name))
+    gtf_analysis = split(file_gtf, fasta_sequence)
+    print(gtf_analysis)
     
     

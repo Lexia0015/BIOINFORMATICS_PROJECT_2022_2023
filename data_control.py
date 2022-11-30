@@ -58,5 +58,5 @@ def erreur(): # TODO HAVE TO MAKE FOR GTF FILE / SEE WHY IT DOESN'T WORK
 
 
 # print(control())
-# print(erreur())
+print(erreur())
 
