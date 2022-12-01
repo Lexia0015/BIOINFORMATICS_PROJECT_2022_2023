@@ -5,8 +5,10 @@ __author__ = 'Andreia CAMPOS FERREIRA'
 __author__ = 'Franziska NICOLAUS'
 
 
-# TODO split() function check with the tkinter part 
+
 # TODO fasta() function to read multiple fastas
+# TODO FAIRE EN SORTE QUE CA SPLIT QUE POUR GENE DANS GTF/GFF/GFF3
+# TODO VOIR S'IL FAUT PAS SAUTER DE LIGNES POUR RESULTAT DANS TKINTER
 
 import pandas as pd
 import numpy as np
@@ -36,7 +38,7 @@ def fasta(file_name):
 
 
 
-def split(file_gtf, fasta_sequence):
+def split(file_gtf, fasta_sequence): 
     """
         It will read the gtf or gff file
         Take the position of the gene and extract the portion of the gene in the fasta file

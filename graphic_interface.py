@@ -21,7 +21,7 @@ import converter as mn
 # TODO Créer une fonction qui permet de choisir si on passe par le terminal ou si on passe par l'interface graphique
         # XXX Organiser des idées pour la partie terminal (par où on commence et par où on finir)
 # TODO Create the interface completely and manage all the functions in (delete, save, open from file, etc)
-# TODO REVOIR FUNCTION POUR GTF FILE
+# TODO finir dernière partie de gtf bouton function
 
 
 
@@ -51,21 +51,18 @@ def interface_tkinter():
     buttom_fasta_file.grid(row = 3, column = 0, pady = 20)   
     
     
-    def select_gtf_gff_fasta(): # TODO faire en sorte de détecter qu'on a selectionne le fasta file / VOIR SI GLOBAL MARCHE
+    def select_gtf_gff_fasta(): 
         
-        # file_name_fasta = filedialog.askopenfilename(title="Select a file", filetypes=(("fasta files", "*.fa"), ("all files", "*.*")))
-        # file_name = rf.fasta(file_name_fasta)
-        # enter_fasta.insert(INSERT, file_name)
-        
-        # if enter_fasta.get("1.0", tk.END) != 0:
-        file_name = enter_fasta.get("1.0", tk.END)
+        if enter_fasta.get("1.0", tk.END) != 0:
+            file_name = enter_fasta.get("1.0", tk.END)
+                
+            file_gtf = filedialog.askopenfilename(title="Select a file", filetypes=(("gtf files", "*.gtf"), ("gff files", "*.gff3"), ("gff files", "*.gff"), ("all files", "*.*")))
+            file_gtf_res = rf.split(file_gtf, file_name)
             
-        file_gtf = filedialog.askopenfilename(title="Select a file", filetypes=(("gtf files", "*.gtf"), ("gff files", "*.gff3"), ("gff files", "*.gff"), ("all files", "*.*")))
-        file_gtf_res = rf.split(file_gtf, file_name)
-        print(file_gtf_res)
-        
-        # enter_fasta.delete('1.0', tk.END)
-        # enter_fasta.insert(INSERT, file_gtf_res)
+            enter_fasta.delete('1.0', tk.END)
+            enter_fasta.insert(INSERT, file_gtf_res)
+        # else:
+            # make error label
 
     
         
@@ -131,3 +128,4 @@ if __name__ == '__main__':
     # file_gtf = input("Path gtf : ")
     # file_gtf_res = rf.split(file_gtf, file_name)
     # print(file_gtf_res)
+    
