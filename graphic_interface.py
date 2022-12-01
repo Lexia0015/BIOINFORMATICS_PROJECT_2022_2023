@@ -108,6 +108,9 @@ def interface_tkinter():
     button_quit = tk.Button(window, text = "Quit", width = 15, relief=tk.RAISED, command = window.destroy) # XXX Create a pop up to certify and maybe to ask if the user wants to save and quit
     button_quit.grid(row = 5, column = 2, pady = 15, padx = 5)
     
+    def save_results():
+        pass
+    
     button_save = tk.Button(window, text = "Save", width = 15, relief=tk.RAISED, command = print("Hello")) # XXX Create a pop up to certify and maybe to ask if the user wants to save
     button_save.grid(row = 3, column = 2, pady = 15)
     

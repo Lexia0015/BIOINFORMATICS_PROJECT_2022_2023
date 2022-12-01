@@ -8,7 +8,8 @@ from read_file import *
 import read_file as rf
 
 # TODO finir de mettre des commentaires
-# TODO Améliorer fichier (mais dans l'ensemble partie 3 et 4 fait)
+# TODO Voir pourquoi ca a pas l'air de marcher pour des séquences longues !!!
+# TODO MAYBE IN ANOTHER FILE ONLY FOR THE MAIN FUNCTION 
 
 
 def transcription(sequence:str) -> str:
@@ -46,25 +47,25 @@ def traduction(sequence_rna:str, protein_sequence=""):
            'UGA':'*', 'CGA':'R', 'AGA':'R', 'GGA':'G', 
            'UGG':'W', 'CGG':'R', 'AGG':'R', 'GGG':'G'}
     
-    protein = ''
+
     sequence_rna.replace("\n", "")
     start = sequence_rna.find('AUG')
-    # print(start)
     for letter in range(start, len(sequence_rna)-1, 3):
         codon = sequence_rna[letter:letter+3]
         if list_amino_acids[codon] == '*':
-            
-            # print(protein_list)
+            # print(protein_sequence)
             if len(sequence_rna[letter+3:]) >= 3:
                 protein_sequence += "\n"
                 return traduction(sequence_rna[letter+3:], protein_sequence)
             else:
                 return protein_sequence
-            
+        
         protein_sequence += list_amino_acids[codon]
+        
+    return protein_sequence
     
         
-# TODO MAYBE IN ANOTHER FILE ONLY FOR THE MAIN FUNCTION        
+       
 def main():
     """
         Function that provides a choice to the User
@@ -90,8 +91,8 @@ def main():
         # if the user chooses "2"
         if user_choice == "2":
             # return the traduction of the RNA
-            transcription_seq = transcription(sequence_fasta)
-            print(traduction(transcription_seq))
+            # transcription_seq = transcription(sequence_fasta)
+            print(traduction(sequence_fasta))
             
         else:
             # if the user chooses "3"
@@ -107,6 +108,7 @@ def main():
                     print("You must choose a number between 1 and 3")
                 # ask the user again what he wants to choose
                 return main()
+ 
                 
             
         
