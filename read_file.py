@@ -7,7 +7,6 @@ __author__ = 'Franziska NICOLAUS'
 
 
 # TODO fasta() function to read multiple fastas
-# TODO FAIRE EN SORTE QUE CA SPLIT QUE POUR GENE DANS GTF/GFF/GFF3
 # TODO VOIR S'IL FAUT PAS SAUTER DE LIGNES POUR RESULTAT DANS TKINTER
 
 import pandas as pd
@@ -57,8 +56,12 @@ def split(file_gtf, fasta_sequence):
     pandas_columns = ["chromosome", "source", "feature", "start", "end", "score", "strand", "frame", "attribute"]
     pandas_gtf = pd.DataFrame(gtf_content, columns=pandas_columns)
     # print(pandas_gtf)
-    start_position = pandas_gtf.iloc[:,3]
-    end_position = pandas_gtf.iloc[:,4] 
+    column_feature = pandas_gtf.iloc[:,2]
+    # print(column_feature)
+    pandas_gene = pandas_gtf.loc[pandas_gtf["feature"] == "gene"]
+    start_position = pandas_gene.iloc[:,3]
+    # print(start_position)
+    end_position = pandas_gene.iloc[:,4] 
     # print(start_position)
     # print(end_position)
     start_position_list = start_position.values.tolist()
@@ -84,8 +87,8 @@ if __name__ == "__main__":
     file_name = input("Path file fasta: " )
     file_gtf = input("Path file gtf: ")
     fasta_sequence = fasta(file_name)
-    # print(fasta(file_name))
-    gtf_analysis = split(file_gtf, fasta_sequence)
-    print(gtf_analysis)
+    print(fasta(file_name))
+    # gtf_analysis = split(file_gtf, fasta_sequence)
+    # print(gtf_analysis)
     
     

@@ -47,12 +47,17 @@ def erreur(): # TODO HAVE TO MAKE FOR GTF FILE / SEE WHY IT DOESN'T WORK
         # Raise an exception based on the class SequenceIncorrect with the following message
         raise Exception("La séquence rentrée est incorrecte (= 0)")
 
+    if ">" in fasta_file:
+        raise Exception ("The ID hasn't been cut ! Make sure you cut the ID")
+    
     # for each character on the sequence
     for c in fasta_file:
         # if the character is different thant A, and B, and C, and N, and T
         if c != 'A' and c != 'G' and c != 'C' and c != 'T' and c != "N":
             # Raise and exception based on the class SequenceIncorrect with the following message
             raise Exception("La sequence contient des autres lettres que A G C T")
+        
+    
         
     
 

@@ -52,17 +52,18 @@ def traduction(sequence_rna:str, protein_sequence=""):
     start = sequence_rna.find('AUG')
     for letter in range(start, len(sequence_rna)-1, 3):
         codon = sequence_rna[letter:letter+3]
-        if list_amino_acids[codon] == '*':
-            # print(protein_sequence)
-            if len(sequence_rna[letter+3:]) >= 3:
-                protein_sequence += "\n"
-                return traduction(sequence_rna[letter+3:], protein_sequence)
-            else:
-                return protein_sequence
+        print(codon)
+    #     if list_amino_acids[codon] == '*':
+    #         # print(protein_sequence)
+    #         if len(sequence_rna[letter+3:]) >= 3:
+    #             protein_sequence += "\n"
+    #             return traduction(sequence_rna[letter+3:], protein_sequence)
+    #         else:
+    #             return protein_sequence
         
-        protein_sequence += list_amino_acids[codon]
+    #     protein_sequence += list_amino_acids[codon]
         
-    return protein_sequence
+    # return protein_sequence
     
         
        
@@ -91,7 +92,7 @@ def main():
         # if the user chooses "2"
         if user_choice == "2":
             # return the traduction of the RNA
-            # transcription_seq = transcription(sequence_fasta)
+            transcription_seq = transcription(sequence_fasta)
             print(traduction(sequence_fasta))
             
         else:
