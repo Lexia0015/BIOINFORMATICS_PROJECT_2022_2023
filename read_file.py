@@ -27,12 +27,17 @@ def fasta(file_name):
     # fasta_seq_line = fasta_content_file.split("\n")
     list_sequence = []
     for line in fasta_content_file:
+        # if line.startswith(">"):
+        #     line += "\n\n"
+        #     # print(line)
         if line.find(">") != 0:
             list_sequence.append(line)
+    # print(list_sequence)
     fasta_sequence = "".join(list_sequence)
     fasta_seq = fasta_sequence.upper()
-    sequence = fasta_seq.replace("\n", "")
-    return sequence
+    # if line
+    # sequence = fasta_seq.replace("\n", "")
+    return fasta_seq
 
 
 

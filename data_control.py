@@ -23,12 +23,10 @@ def control():
     """
     file_name = input("Path fa file : ")
     file_gtf = input("Path gtf file : ")
-    if rf.fasta(file_name):
-        if pathlib.Path(file_name).suffix != ".fa":
-            raise Exception("You have to take a fasta file")
-    if rf.split(file_gtf, file_name):
-        if pathlib.Path(file_gtf).suffix not in [".gtf",".gff",".gff3"]:
-            raise Exception("You have to take a gtf or a gff file") # TODO Voir pourquoi l'erreur "IndexError: list index out of range"
+    if pathlib.Path(file_name).suffix != ".fa":
+        raise Exception("You have to take a fasta file")
+    if pathlib.Path(file_gtf).suffix not in [".gtf",".gff",".gff3"]:
+        raise Exception("You have to take a gtf or a gff file") 
 
 
 def erreur(): # TODO HAVE TO MAKE FOR GTF FILE / SEE WHY IT DOESN'T WORK
@@ -62,6 +60,6 @@ def erreur(): # TODO HAVE TO MAKE FOR GTF FILE / SEE WHY IT DOESN'T WORK
     
 
 
-# print(control())
-print(erreur())
+print(control())
+# print(erreur())
 
