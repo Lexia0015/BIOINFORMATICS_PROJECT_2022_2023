@@ -37,29 +37,35 @@ def erreur(): # TODO HAVE TO MAKE FOR GTF FILE / SEE WHY IT DOESN'T WORK
         Returns:
             Error (str) : an error message if it doesn't match
     """
-    file_name = input("Path fa file : ")
+    fasta_file = input("Path fa file : ")
     file_gtf = input("Path gtf file : ")
-    fasta_file = rf.fasta(file_name)
+    
+    file_open_fasta = open(fasta_file, "r")
+    file_content_fasta = file_open_fasta.readlines()
+
+    fasta_sequence = rf.fasta(fasta_file)
+    # print(fasta_sequence)
     # if the len of the sequence is None
-    if len(fasta_file) == 0:
+    if len(file_content_fasta) == 0:
         # Raise an exception based on the class SequenceIncorrect with the following message
         raise Exception("La séquence rentrée est incorrecte (= 0)")
-
-    if ">" in fasta_file:
-        raise Exception ("The ID hasn't been cut ! Make sure you cut the ID")
     
-    # for each character on the sequence
-    for c in fasta_file:
-        # if the character is different thant A, and B, and C, and N, and T
-        if c != 'A' and c != 'G' and c != 'C' and c != 'T' and c != "N":
-            # Raise and exception based on the class SequenceIncorrect with the following message
-            raise Exception("La sequence contient des autres lettres que A G C T")
+    for line in file_content_fasta:
+        if ">" in line:
+            raise Exception ("The ID hasn't been cut ! Make sure you cut the ID")
+        
+    # # for each character on the sequence
+    # for c in fasta_sequence:
+    #     # if the character is different thant A, and B, and C, and N, and T
+    #     if c != 'A' and c != 'G' and c != 'C' and c != 'T' and c != "N":
+    #         # Raise and exception based on the class SequenceIncorrect with the following message
+    #         raise Exception("La sequence contient des autres lettres que A G C T")
         
     
         
     
 
 
-print(control())
-# print(erreur())
+# print(control())
+print(erreur())
 

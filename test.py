@@ -1,17 +1,30 @@
-def nome():
-    name = input('Poderia nos dizer seu nome? ')
-    return name
+# importing the sys module
+import sys
 
-def intro(name):
-    print('Olá {}, seja bem vindo!'.format(name))
+# the setrecursionlimit function is
+# used to modify the default recursion
+# limit set by python. Using this,
+# we can increase the recursion limit
+# to satisfy our needs
 
-name = nome()
-intro(name)
+sys.setrecursionlimit(10**6)
 
+# a simple recursive function
+# to compute the factorial of a number
+# it takes one parameter, the
+# number whose factorial we
+# want to compute and returns
+# its factorial
+def fact(n):
 
-file_name = input("Path file fasta: " )
-file_gtf = input("Path file gtf: ")
-fasta_sequence = fasta(file_name)
-# print(fasta(file_name))
-gtf_analysis = split(file_gtf, fasta_sequence)
-print(gtf_analysis)
+	if(n == 0):
+		return 1
+
+	return n * fact(n - 1)
+
+if __name__ == '__main__':
+
+	# taking input
+	f = int(input('Enter the number: \n'))
+
+	print(fact(f))

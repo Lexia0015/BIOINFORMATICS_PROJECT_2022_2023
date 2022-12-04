@@ -16,3 +16,6 @@ The end-1c is divided in 2 parts:
     1c: Remove 1 character starting from the end.
 
 It deletes the last character to remove that last \n so your e-mail doesn't end with an extra line.
+
+
+suprim gitignore
