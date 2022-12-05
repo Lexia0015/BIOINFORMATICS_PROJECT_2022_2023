@@ -6,8 +6,7 @@ __author__ = 'Franziska NICOLAUS'
 
 
 
-# TODO fasta() function to read multiple fastas
-# TODO VOIR S'IL FAUT PAS SAUTER DE LIGNES POUR RESULTAT DANS TKINTER
+
 
 import pandas as pd
 import numpy as np
@@ -98,7 +97,7 @@ def split(file_gtf, fasta_sequence):
 
 
 
-def erreur(fasta_file, file_gtf): # TODO HAVE TO MAKE FOR GTF FILE / SEE WHY IT DOESN'T WORK
+def erreur(fasta_file, file_gtf): 
     """
         Function that will show different error messages if the sequence doesn't correspond with the user choices.
         Args:
@@ -143,9 +142,6 @@ def erreur(fasta_file, file_gtf): # TODO HAVE TO MAKE FOR GTF FILE / SEE WHY IT 
             raise Exception("The first column of the GTF/GFF/GFF3 file must be in string format !")
         # elif id.startswith("NZ") == 0:
         #     raise Exception("The first column must contain the ID of the chromosome")
-    for source in pandas_gtf.iloc[:, 0]:  # A REVOIR
-        if type(source) is not str:
-            raise Exception("The second column of the GTF/GFF/GFF3 file must be in string format !")
     for start in pandas_gtf.iloc[:,3]:
         if type(start) is not int:
             raise Exception("The column start must have integer data !")
@@ -155,8 +151,17 @@ def erreur(fasta_file, file_gtf): # TODO HAVE TO MAKE FOR GTF FILE / SEE WHY IT 
     for ltr in pandas_gtf.iloc[:, 6]:
         if ltr != "+" and ltr != "-": 
             raise Exception("The Strand column can only contain the + and - symbols")
-        
-        
+    for feature in pandas_gtf.iloc[:, 2]:
+        if feature not in ["CDS", "start_codon", "stop_codon", "5UTR", "3UTR", "inter", "inter_CNS", "intron_CNS", "exon", "gene"]:
+            raise Exception("The feature must contain : CDS, start_codon, end_codon, gene or homology")
+    for frame in pandas_gtf.iloc[:, 7]:
+        if frame != "." and frame not in ['0', '1', '2']:
+            raise Exception("The frame value is not correct !")
+    for score in pandas_gtf.iloc[:, 5]:
+        if score != ".":
+            raise Exception("The score is not a numeric value !")
+    
+
     return True
         
     
