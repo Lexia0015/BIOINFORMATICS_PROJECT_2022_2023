@@ -19,10 +19,7 @@ import read_file as rf
 from converter import *
 import converter as mn
 
-# TODO Créer une fonction qui permet de choisir si on passe par le terminal ou si on passe par l'interface graphique
-        # XXX Organiser des idées pour la partie terminal (par où on commence et par où on finir)
-# TODO Create the interface completely and manage all the functions in (delete, save, open from file, etc)
-# TODO finir dernière partie de gtf bouton function
+# TODO ERROR LABEL
 
 
 
@@ -33,13 +30,15 @@ def interface_tkinter():
     window.iconbitmap("images\dna_icon.ico")
     window.config(bg = "lightblue")
     
-    label_window = tk.Label(window, text = "DNA converter", font=("Arial", 22))
+    label_window = tk.Label(window, text = "DNA converter\n", font=("Arial", 22))
     label_window.grid(row=0, column=0, columnspan=4)
+    label_window.config(bg = "lightblue")
 
     label_choose = tk.Label(window, text = "Please enter your FASTA sequence here", font=("Arial", 15))
-    label_choose.grid(row= 1, column= 0, columnspan=3)
+    label_choose.grid(row= 1, column= 0, columnspan=1)
+    label_choose.config(bg = "lightblue")
     
-    enter_fasta = tk.Text(window, width = 80, height = 20, font = ("Arial", 12))
+    enter_fasta = tk.Text(window, width = 80, height = 15, font = ("Arial", 12))
     enter_fasta.grid(row = 2, column = 0, columnspan = 2, padx = 40)
 
 
@@ -72,8 +71,12 @@ def interface_tkinter():
     buttom_gtf_gff_file = tk.Button(window, text = "Add a GTF/GFF file", command = select_gtf_gff_fasta)
     buttom_gtf_gff_file.grid(row = 4, column = 0, pady = 20)
     
-    label_result = scrolledtext.ScrolledText(window, width = 60, height = 8, font = ("Arial", 12))
-    label_result.grid(row = 6, column = 0, columnspan = 3)
+    label_resulttext = tk.Label(window, text = "Result:", font=("Arial", 15))
+    label_resulttext.grid(row= 6, column= 0, columnspan=1)
+    label_resulttext.config(bg = "lightblue")
+    
+    label_result = scrolledtext.ScrolledText(window, width = 75, height = 8, font = ("Arial", 12))
+    label_result.grid(row = 7, column = 0, columnspan = 3)
     
     
     def validate():
@@ -115,13 +118,17 @@ def interface_tkinter():
             window.destroy()
 
 
-    button_quit = tk.Button(window, text = "Quit", width = 15, relief=tk.RAISED, command = quit) # XXX Create a pop up to certify and maybe to ask if the user wants to save and quit
+    button_quit = tk.Button(window, text = "Quit", width = 15, relief=tk.RAISED, command = quit) 
     button_quit.grid(row = 5, column = 2, pady = 15, padx = 5)
     
     def save_results():
-        pass
+        if label_result != 0:
+            message_save = messagebox.showwarning("Save", "Are you sure you want to save the results ?")
+            if message_save:
+                with open("results.txt", 'w') as file_result:
+                    file_result.write(label_result.get('1.0', tk.END))
     
-    button_save = tk.Button(window, text = "Save", width = 15, relief=tk.RAISED, command = print("Hello")) # XXX Create a pop up to certify and maybe to ask if the user wants to save
+    button_save = tk.Button(window, text = "Save", width = 15, relief=tk.RAISED, command = save_results) 
     button_save.grid(row = 3, column = 2, pady = 15)
     
     

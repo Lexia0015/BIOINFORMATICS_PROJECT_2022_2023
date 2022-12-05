@@ -78,7 +78,7 @@ def main():
 
 
     if users_choice_envs == "2" :
-        print(gi.interface_tkinter())
+        gi.interface_tkinter()
 
 
 if __name__ =='__main__':

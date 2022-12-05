@@ -6,12 +6,8 @@ __author__ = 'Franziska NICOLAUS'
 
 from read_file import *
 import read_file as rf
+import sys
 
-# TODO finir de mettre des commentaires
-# TODO Voir pourquoi ca a pas l'air de marcher pour des séquences longues !!!
-# TODO MAYBE IN ANOTHER FILE ONLY FOR THE MAIN FUNCTION 
-import sys, threading
-# sys.setrecursionlimit(5000)
 
 def transcription(sequence:str) -> str:
     """
@@ -57,72 +53,64 @@ def traduction(sequence_rna:str, protein_sequence=""):
         # print(codon)
         if list_amino_acids[codon] == '*':
             # print(protein_sequence)
-            if len(sequence_rna[letter+3:]) >= 3:
-                protein_sequence += "\n"
-                # print(traduction(sequence_rna[letter+3:], protein_sequence))
-                return traduction(sequence_rna[letter+3:], protein_sequence)
-            else:
-                # print(protein_sequence)
-                return protein_sequence
-        
-        
+            break
         protein_sequence += list_amino_acids[codon]
         
     return protein_sequence
     
         
        
-def main():
-    """
-        Function that provides a choice to the User
-        Args:
-            user_choice (str): the User has to choose a number between 1 and 3
-        Returns:
-            The previous functions according to the choice of the User
-    """
-    file_name = input("Path file fasta: " )
-    sequence_fasta = rf.fasta(file_name)
+# def main():
+#     """
+#         Function that provides a choice to the User
+#         Args:
+#             user_choice (str): the User has to choose a number between 1 and 3
+#         Returns:
+#             The previous functions according to the choice of the User
+#     """
+#     file_name = input("Path file fasta: " )
+#     sequence_fasta = rf.fasta(file_name)
     
-    # create a variable that asks the user what to choose between different options
-    user_choice = input("""Chose what you want to do : \n
-                    1 = Transcription
-                    2 = Traduction
-                    3 = Transcription et Traduction\n""")
+#     # create a variable that asks the user what to choose between different options
+#     user_choice = input("""Chose what you want to do : \n
+#                     1 = Transcription
+#                     2 = Traduction
+#                     3 = Transcription et Traduction\n""")
     
-    # if the user chooses "1"
-    if user_choice == "1":
-        # return the transcription of the DNA
-        print(transcription(sequence_fasta))
-    else:
-        # if the user chooses "2"
-        if user_choice == "2":
-            sys.setrecursionlimit(1000)
-            # return the traduction of the RNA
-            transcription_seq = transcription(sequence_fasta)
-            print(traduction(transcription_seq))
+#     # if the user chooses "1"
+#     if user_choice == "1":
+#         # return the transcription of the DNA
+#         print(transcription(sequence_fasta))
+#     else:
+#         # if the user chooses "2"
+#         if user_choice == "2":
+#             sys.setrecursionlimit(1000)
+#             # return the traduction of the RNA
+#             transcription_seq = transcription(sequence_fasta)
+#             print(traduction(transcription_seq))
             
-        else:
-            # if the user chooses "3"
-            if user_choice == "3":
-                # return the transcription and the traduction of the DNA
-                transcripion_seq = transcription(sequence_fasta)
-                print(transcripion_seq)
-                print(traduction(transcripion_seq))
-            else:
-                # if the user chooses 0 or nothing
-                if user_choice == "0" or user_choice== "" :
-                    # return an error phrase
-                    print("You must choose a number between 1 and 3")
-                # ask the user again what he wants to choose
-                return main()
+#         else:
+#             # if the user chooses "3"
+#             if user_choice == "3":
+#                 # return the transcription and the traduction of the DNA
+#                 transcripion_seq = transcription(sequence_fasta)
+#                 print(transcripion_seq)
+#                 print(traduction(transcripion_seq))
+#             else:
+#                 # if the user chooses 0 or nothing
+#                 if user_choice == "0" or user_choice== "" :
+#                     # return an error phrase
+#                     print("You must choose a number between 1 and 3")
+#                 # ask the user again what he wants to choose
+#                 return main()
  
                 
             
         
 
 
-if __name__ == '__main__':
-    # sys.setrecursionlimit(10**7) # max depth of recursion
-    # threading.stack_size(2**27)  # new thread will get stack of such size
-    main()
+# if __name__ == '__main__':
+#     # sys.setrecursionlimit(10**7) # max depth of recursion
+#     # threading.stack_size(2**27)  # new thread will get stack of such size
+#     main()
 
