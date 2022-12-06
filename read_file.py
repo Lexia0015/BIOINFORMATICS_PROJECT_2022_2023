@@ -5,20 +5,13 @@ __author__ = 'Andreia CAMPOS FERREIRA'
 __author__ = 'Franziska NICOLAUS'
 
 
-
-
-
 import pandas as pd
 import numpy as np
-
-
-# from graphic_interface import select_file_fasta
-
-
 import pathlib
 
 from read_file import *
 import read_file as rf
+
 
 
 def control(file_name, file_gtf):
@@ -135,31 +128,34 @@ def erreur(fasta_file, file_gtf):
     pandas_columns = ["chromosome", "source", "feature", "start", "end", "score", "strand", "frame", "attribute"]
     pandas_gtf = pd.read_csv(gtf_file, header=None, sep="\t", comment="#", names=pandas_columns)
     print(pandas_gtf.dtypes)
+    print(pandas_gtf)
     if pandas_gtf.empty == True:
         raise Exception("The Dataframe is empty !!!")
     for id in pandas_gtf.iloc[:,0]:
         if type(id) is not str:
             raise Exception("The first column of the GTF/GFF/GFF3 file must be in string format !")
-        # elif id.startswith("NZ") == 0:
-        #     raise Exception("The first column must contain the ID of the chromosome")
     for start in pandas_gtf.iloc[:,3]:
         if type(start) is not int:
             raise Exception("The column start must have integer data !")
-    for end in pandas_gtf.iloc[:,3]:
+    for end in pandas_gtf.iloc[:,4]:
         if type(end) is not int:
             raise Exception("The column end must have integer data !")
     for ltr in pandas_gtf.iloc[:, 6]:
-        if ltr != "+" and ltr != "-": 
+        if ltr != "+" and ltr != "-" and ltr != ".": 
             raise Exception("The Strand column can only contain the + and - symbols")
     for feature in pandas_gtf.iloc[:, 2]:
-        if feature not in ["CDS", "start_codon", "stop_codon", "5UTR", "3UTR", "inter", "inter_CNS", "intron_CNS", "exon", "gene"]:
+        if feature not in ["gene", "CDS", "start_codon", "stop_codon", "5UTR", "3UTR", "inter", "inter_CNS", "intron_CNS", "exon", "chromosome", "biological_region", "mRNA", "ncRNA_gene", "lnc_RNA"]:
             raise Exception("The feature must contain : CDS, start_codon, end_codon, gene or homology")
     for frame in pandas_gtf.iloc[:, 7]:
         if frame != "." and frame not in ['0', '1', '2']:
             raise Exception("The frame value is not correct !")
-    for score in pandas_gtf.iloc[:, 5]:
-        if score != ".":
-            raise Exception("The score is not a numeric value !")
+    # for score in pandas_gtf.iloc[:, 5]:
+    #     if score != ".":
+    #         raise Exception("The score is not a numeric value !")
+    # for start in pandas_gtf.iloc[:,3]:
+    #     for end in pandas_gtf.iloc[:,4]:
+    #         if start>end:
+    #             raise Exception("The start must be smaller than the end !")
     
 
     return True
@@ -171,10 +167,10 @@ def erreur(fasta_file, file_gtf):
 if __name__ == "__main__":
     file_name = input("Path file fasta: " )
     file_gtf = input("Path file gtf: ")
-    if control(file_name, file_gtf):
-        if erreur(file_name, file_gtf):
-            fasta_sequence = fasta(file_name)
-            print(fasta_sequence)
+    # if control(file_name, file_gtf):
+    #     if erreur(file_name, file_gtf):
+    fasta_sequence = fasta(file_name)
+    print(fasta_sequence)
         # gtf_split = split(file_gtf, fasta_sequence)
         # print(gtf_split)
     

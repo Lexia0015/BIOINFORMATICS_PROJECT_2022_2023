@@ -6,7 +6,7 @@ __author__ = 'Franziska NICOLAUS'
 
 from read_file import *
 import read_file as rf
-import sys
+
 
 
 def transcription(sequence:str) -> str:
@@ -48,6 +48,8 @@ def traduction(sequence_rna:str, protein_sequence=""):
 
     sequence_rna.replace("\n", "")
     start = sequence_rna.find('AUG')
+    if ((len(sequence_rna)-1)-start)%3 !=0 :
+        raise Exception("The length between the sequece must be a multiple of 3 ! Please remove 1 or 2 nucleotides !")
     for letter in range(start, len(sequence_rna)-1, 3):
         codon = sequence_rna[letter:letter+3]
         # print(codon)
@@ -110,7 +112,5 @@ def traduction(sequence_rna:str, protein_sequence=""):
 
 
 # if __name__ == '__main__':
-#     # sys.setrecursionlimit(10**7) # max depth of recursion
-#     # threading.stack_size(2**27)  # new thread will get stack of such size
 #     main()
 

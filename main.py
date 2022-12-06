@@ -6,6 +6,11 @@ __author__ = 'Franziska NICOLAUS'
 
 from graphic_interface import *
 import graphic_interface as gi
+from read_file import *
+import read_file as rf
+from converter import *
+import converter as mn
+
 def main(): 
     """
         Function that provides a choice to the User
