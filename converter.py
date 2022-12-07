@@ -27,7 +27,19 @@ def transcription(sequence:str) -> str:
 
 
 def traduction(sequence_rna:str, protein_sequence=""):
-    
+    """Function that traducts the RNA sequence into protein sequence
+
+    Args:
+        sequence_rna (str): sequence of RNA
+        protein_sequence (str, optional): protein sequence
+
+    Raises:
+        Exception: If the length of the RNA is not a multiple of 3
+
+    Returns:
+        protein_sequence(str) : RNA sequence traducted into amino acids
+    """
+    # create a dictionary with the codons as key and the corresponding amino acids as value
     list_amino_acids = {'UUU':'F', 'CUU':'L', 'AUU':'I', 'GUU':'V',
            'UUC':'F', 'CUC':'L', 'AUC':'I', 'GUC':'V',
            'UUA':'L', 'CUA':'L', 'AUA':'I', 'GUA':'V',
@@ -45,19 +57,28 @@ def traduction(sequence_rna:str, protein_sequence=""):
            'UGA':'*', 'CGA':'R', 'AGA':'R', 'GGA':'G', 
            'UGG':'W', 'CGG':'R', 'AGG':'R', 'GGG':'G'}
     
-
+    # put the rows of the RNA sequence into one long string by replacing the line break with an empty string
     sequence_rna.replace("\n", "")
+    # find the AUG codon in the RNA sequence and keep it in a start variable
     start = sequence_rna.find('AUG')
+    # if the length of the RNA sequence that can be translated in protein is not divisible by 3
     if ((len(sequence_rna)-1)-start)%3 !=0 :
+        # Raise an exception telling the user that the sequence must be multiple of 3 and to remove 1 or 2 nucleotides
         raise Exception("The length between the sequece must be a multiple of 3 ! Please remove 1 or 2 nucleotides !")
+    # for each third letter in the sequence 
     for letter in range(start, len(sequence_rna)-1, 3):
+        # take the nucleotide and the following two and keep it in a variable codon
         codon = sequence_rna[letter:letter+3]
         # print(codon)
+        # if the value in the dictionary of the codon key equals to "*" (which means STOP)
         if list_amino_acids[codon] == '*':
             # print(protein_sequence)
+            # break the loop
             break
+        # add the amino acid values of the codon keys to a variable 
         protein_sequence += list_amino_acids[codon]
-        
+    
+    # return the protein sequence    
     return protein_sequence
     
         

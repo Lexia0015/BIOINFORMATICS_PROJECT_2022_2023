@@ -30,15 +30,15 @@
 #     print(fasta_sequence)
 
 
-import io
+# import io
 
-FASTA='''\
->Rosetta_Example_1
-THERECANBENOSPACE
->Rosetta_Example_2
-THERECANBESEVERAL
-LINESBUTTHEYALLMUST
-BECONCATENATED'''
+# FASTA='''\
+# >Rosetta_Example_1
+# THERECANBENOSPACE
+# >Rosetta_Example_2
+# THERECANBESEVERAL
+# LINESBUTTHEYALLMUST
+# BECONCATENATED'''
 
 # infile = io.StringIO(FASTA)
 # print(infile.read())
@@ -57,7 +57,8 @@ def fasta_parse():
             elif key:
                 val += line.rstrip()
         if key:
-            yield key, val
+            yield  key, val
+        print(key, "\n", val)
 
 print('\n'.join('%s: %s' % keyval for keyval in fasta_parse()))
 
