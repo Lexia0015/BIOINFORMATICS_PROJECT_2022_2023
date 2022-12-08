@@ -35,8 +35,6 @@ def interface_tkinter():
     window.title("DNA converter")
     # set the size of the window
     window.geometry("1000x800")
-    # set the icon picture of the window by choosing a picture by path
-    window.iconbitmap("images\dna_icon.ico")
     # set the background color of the window to light blue
     window.config(bg = "lightblue")
     

@@ -121,7 +121,7 @@ def split(file_gtf, fasta_sequence):
 
 
 
-def erreur(fasta_file, file_gtf): 
+def erreur(fasta_file, gtf_file): 
     """
         Function that will show different error messages if the sequence doesn't correspond with the user choices.
         Args:
@@ -157,8 +157,8 @@ def erreur(fasta_file, file_gtf):
             # Raise and exception based on the following message
             raise Exception("La sequence contient des autres lettres que A G C T N")
     
-    # open the gtf file in read mode and keep it in a variable
-    gtf_file = open(file_gtf, "r")
+    # # open the gtf file in read mode and keep it in a variable
+    # gtf_file = open(file_gtf, "r")
     
     # give every column in the gtf file a name
     pandas_columns = ["chromosome", "source", "feature", "start", "end", "score", "strand", "frame", "attribute"]
@@ -197,11 +197,11 @@ def erreur(fasta_file, file_gtf):
             # Raise an exception telling the user that the column can only contain +,- and . symbols
             raise Exception("The Strand column can only contain the + and - symbols")
     # for every entry in the third "feature" column
-    for feature in pandas_gtf.iloc[:, 2]:
-        # if the row entry is not a possible features
-        if feature not in ["gene", "CDS", "start_codon", "stop_codon", "5UTR", "3UTR", "inter", "inter_CNS", "intron_CNS", "exon", "chromosome", "biological_region", "mRNA", "ncRNA_gene", "lnc_RNA"]:
-            # Raise an exception telling the user which feature every entry must consist of the list here
-            raise Exception("The feature must contain : CDS, start_codon, end_codon, gene or homology")
+    # for feature in pandas_gtf.iloc[:, 2]:
+    #     # if the row entry is not a possible features
+    #     if feature not in ["gene", "CDS", "start_codon", "stop_codon", "5UTR", "3UTR", "inter", "inter_CNS", "intron_CNS", "exon", "chromosome", "biological_region", "mRNA", "ncRNA_gene", "lnc_RNA"]:
+    #         # Raise an exception telling the user which feature every entry must consist of the list here
+    #         raise Exception("The feature must contain : CDS, start_codon, end_codon, gene or homology")
     # for every entry in the eighth "frame" column    
     for frame in pandas_gtf.iloc[:, 7]:
         # if the row entry is not in the range 0-2 or .
@@ -209,9 +209,9 @@ def erreur(fasta_file, file_gtf):
             # Raise an exception that the frame value is not correct
             raise Exception("The frame value is not correct !")
         
-    # for score in pandas_gtf.iloc[:, 5]:
-    #     if score != ".":
-    #         raise Exception("The score is not a numeric value !")
+    for score in pandas_gtf.iloc[:, 5]:
+        if score != "." and score != "0" and score != "1":
+            raise Exception("The score is not a numeric value !")
     # for start in pandas_gtf.iloc[:,3]:
     #     for end in pandas_gtf.iloc[:,4]:
     #         if start>end:
@@ -220,7 +220,7 @@ def erreur(fasta_file, file_gtf):
     # close the fasta file
     file_open_fasta.close()
     # close the gtf file
-    gtf_file.close()
+    # gtf_file.close()
     # return True
     return True
         
