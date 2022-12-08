@@ -61,10 +61,6 @@ def traduction(sequence_rna:str, protein_sequence=""):
     sequence_rna.replace("\n", "")
     # find the AUG codon in the RNA sequence and keep it in a start variable
     start = sequence_rna.find('AUG')
-    # if the length of the RNA sequence that can be translated in protein is not divisible by 3
-    if ((len(sequence_rna)-1)-start)%3 !=0 :
-        # Raise an exception telling the user that the sequence must be multiple of 3 and to remove 1 or 2 nucleotides
-        raise Exception("The length between the sequece must be a multiple of 3 ! Please remove 1 or 2 nucleotides !")
     # for each third letter in the sequence 
     for letter in range(start, len(sequence_rna)-1, 3):
         # take the nucleotide and the following two and keep it in a variable codon

@@ -292,13 +292,4 @@ def interface_tkinter():
     # set the end of the interface window 
     window.mainloop()
 
-
-
-
-if __name__ == '__main__':
-    interface_tkinter()
-    # file_name = input("Path fa :")
-    # file_gtf = input("Path gtf : ")
-    # file_gtf_res = rf.split(file_gtf, file_name)
-    # print(file_gtf_res)
     

@@ -104,8 +104,40 @@ def main():
         
         # if the user wants to use a text file            
         if user_choice_args == "2":
-            pass      
+            user_input_text = input("Write your fasta sequence :\n")
 
+            # Ask the user what he wants to convert into what : DNA to RNA, RNA to Protein, or DNA to protein
+            user_choice_conversion = input("""\nWhat do you want to convert?\n
+                                            1 = DNA -> RNA
+                                            2 = RNA -> Protein
+                                            3 = DNA -> Protein\n
+                Your choice: """)
+            
+            
+            # if the user wants to convert the DNA sequence into RNA sequence
+            if user_choice_conversion == "1":
+                if user_input_text != "A" and user_input_text != "G" and user_input_text != "T" and user_input_text != "C":
+                    raise Exception("The text must contain A, T, C and G")
+                else:
+                # print the transcripted RNA by using the transcription function from the converter.py file
+                    print(mn.transcription(user_input_text))
+            
+            # if the user wants to convert the RNA sequence into Protein sequence
+            if user_choice_conversion == "2":
+                if user_input_text != "A" and user_input_text != "G" and user_input_text != "U" and user_input_text != "C":
+                    raise Exception("The text must contain A, U, C and G")
+                else:
+                # print the traducted amino acids by using the traduction function from the converter.py file
+                    print(mn.traduction(user_input_text))
+
+            # if the user wants to convert the DNA sequence into Protein sequence
+            if user_choice_conversion == "3" :
+                if user_input_text != "A" and user_input_text != "G" and user_input_text != "T" and user_input_text != "C":
+                    raise Exception("The text must contain A, T, C and G")
+                else:
+                # print the amino acids which has been translated into RNA before by using first the translation function and then the traduction function from the converter.py file
+                    print(mn.traduction(transcription(user_input_text)))
+                
     # if the user wants to use the Interface
     if users_choice_envs == "2" :
         # Excecute graphic_interface.py
