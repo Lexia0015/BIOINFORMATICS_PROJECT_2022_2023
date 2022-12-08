@@ -14,7 +14,7 @@ import read_file as rf
 
 
 
-def control(file_name, file_gtf):
+def control_fasta(file_name):
     """
         Function that will verify is the input data is correct
         Args:
@@ -27,8 +27,21 @@ def control(file_name, file_gtf):
     if pathlib.Path(file_name).suffix != ".fa":
         # raise an exception to tell the user he has to insert a fasta file
         raise Exception("You have to take a fasta file")
+    # else return True
+    else:
+        return True
+
+def control_gtf(file_gtf):
+    """
+        Function that will verify is the input data is correct
+        Args:
+            Input data : files data
+        Returns:
+            Error_control (str) : an error message if the data is not correct or a simply message that says Correct ! 
+            TODO simply message a voir
+    """
     # else if the user inserts a file which is not in a gtf, gff or gff3 format
-    elif pathlib.Path(file_gtf).suffix not in [".gtf",".gff",".gff3"]:
+    if pathlib.Path(file_gtf).suffix not in [".gtf",".gff",".gff3"]:
         # raise an exception to tell the user he has to insert a gtf or gff file
         raise Exception("You have to take a gtf or a gff file") 
     # else return True
@@ -121,11 +134,11 @@ def split(file_gtf, fasta_sequence):
 
 
 
-def erreur(fasta_file, gtf_file): 
+def erreur_fasta(fasta_file): 
     """
         Function that will show different error messages if the sequence doesn't correspond with the user choices.
         Args:
-            Input data : DNA ou RNA sequence from the Fasta file, or from an Entry, or from the GTF/GFF file
+            Input data : DNA ou RNA sequence from the Fasta file, or from an Entry
         Returns:
             Error (str) : an error message if it doesn't match
     """
@@ -156,17 +169,28 @@ def erreur(fasta_file, gtf_file):
         if char != "A" and char != "G" and char != "C" and char != "T" and char != "N":
             # Raise and exception based on the following message
             raise Exception("La sequence contient des autres lettres que A G C T N")
+    file_open_fasta.close()
     
+    return True
+
+def erreur_gtf(gtf_file):
+    """
+        Function that will show different error messages if the sequence doesn't correspond with the user choices.
+        Args:
+            Input data : GTF file
+        Returns:
+            Error (str) : an error message if it doesn't match
+    """
     # # open the gtf file in read mode and keep it in a variable
     # gtf_file = open(file_gtf, "r")
-    
+
     # give every column in the gtf file a name
     pandas_columns = ["chromosome", "source", "feature", "start", "end", "score", "strand", "frame", "attribute"]
     # read the gtf file, convert it into a table and keep it in a variable
     pandas_gtf = pd.read_csv(gtf_file, header=None, sep="\t", comment="#", names=pandas_columns)
     
     # print(pandas_gtf.dtypes)
-    # print(pandas_gtf)
+    print(pandas_gtf)
     
     # if the table is empty
     if pandas_gtf.empty == True:
@@ -218,26 +242,46 @@ def erreur(fasta_file, gtf_file):
     #             raise Exception("The start must be smaller than the end !")
     
     # close the fasta file
-    file_open_fasta.close()
+
     # close the gtf file
     # gtf_file.close()
     # return True
     return True
         
     
-        
+def read_multiple_fasta(fasta_file):
+    fasta = {}
+    with open(fasta_file) as file_one:
+        for line in file_one:
+            line = line.strip()
+            if line.startswith(">"):
+                active_sequence_name = line[1:]
+                if active_sequence_name not in fasta:
+                    fasta[active_sequence_name] = []
+                continue
+            sequence = line
+            fasta[active_sequence_name].append(sequence)
+
+    print(fasta.values())
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
     file_name = input("Path file fasta: " )
     file_gtf = input("Path file gtf: ")
-    if control(file_name, file_gtf):
-        if erreur(file_name, file_gtf):
-            fasta_sequence = fasta(file_name)
-    print(fasta_sequence)
-    gtf_split = split(file_gtf, fasta_sequence)
-    # print(gtf_split)
-    
+    # if control(file_name, file_gtf):
+    #     if erreur(file_name, file_gtf):
+    #         fasta_sequence = fasta(file_name)
+    # print(fasta_sequence)
+    # gtf_split = split(file_gtf, fasta_sequence)
+    # # print(gtf_split)
+    print(read_multiple_fasta(file_name))
         # print(fasta(file_name))
         # print("NO")
     
