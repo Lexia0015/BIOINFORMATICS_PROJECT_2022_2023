@@ -11,7 +11,8 @@ import pathlib
 
 from read_file import *
 import read_file as rf
-
+from converter import *
+import converter as ct
 
 
 def control_fasta(file_name):
@@ -251,23 +252,24 @@ def erreur_gtf(gtf_file):
     
 def read_multiple_fasta(fasta_file):
     fasta = {}
-    with open(fasta_file) as file_one:
-        for line in file_one:
+    with open(fasta_file) as multiple_fasta:
+        for line in multiple_fasta:
             line = line.strip()
             if line.startswith(">"):
-                active_sequence_name = line[1:]
-                if active_sequence_name not in fasta:
-                    fasta[active_sequence_name] = []
+                sequence_id = line[1:]
+                if sequence_id not in fasta:
+                    fasta[sequence_id] = []
                 continue
             sequence = line
-            fasta[active_sequence_name].append(sequence)
-
-    print(fasta.values())
-
-
-
-
-
+            fasta[sequence_id].append(sequence)
+        # for value in fasta.values():
+        #     fasta_values = "".join(str(value))
+        fasta_values = ' '.join(map(str, fasta.values()))
+        fasta_sequences = fasta_values.replace(",", "")
+        
+    return fasta_sequences
+    
+    
 
 
 
@@ -282,6 +284,8 @@ if __name__ == "__main__":
     # gtf_split = split(file_gtf, fasta_sequence)
     # # print(gtf_split)
     print(read_multiple_fasta(file_name))
+    
+    print(ct.transcription(read_multiple_fasta(file_name)))
         # print(fasta(file_name))
         # print("NO")
     

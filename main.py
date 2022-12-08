@@ -165,7 +165,13 @@ def main():
         # Excecute graphic_interface.py
         gi.interface_tkinter()
 
-
+    else:
+        if users_choice_envs != "1" and users_choice_envs != "2" :
+            # return an error phrase
+            print("You must choose a number between 1 and 2")
+            # ask the user again what he wants to choose
+            return main()
+        
 if __name__ =='__main__':
     main()
     
