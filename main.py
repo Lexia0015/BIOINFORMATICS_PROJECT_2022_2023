@@ -22,15 +22,15 @@ def main():
     # Ask the user which environment he wants to use
     users_choice_envs = input("""Choose where you want to work: \n
                         1 = Terminal
-                        2 = Multi Fasta Analysis
-                        3 = Interface\n
+                        2 = Interface\n
     Your choice: """)
     # if the user wants to use the Terminal
     if users_choice_envs == "1":
         # Ask the user what file format he wants to use
         user_choice_args = input("""\nWhat do you want to choose?\n
                             1 = Fasta file 
-                            2 = Text\n
+                            2 = Multiple fasta Analysis
+                            3 = Text\n
 
         Your choice: """)
         # if the user chooses a fasta file
@@ -135,9 +135,38 @@ def main():
                     print("You must write 'y' or 'n'. Please mind to write it in lowercase.")
                     # ask the user again what he wants to choose
                     return main()
-    
+        
+        if user_choice_args == "2" :
+            file_name = input("\nChoose your Fasta file: ")
+            if rf.control_fasta(file_name):
+                if rf.erreur_fasta(file_name):
+                    multiple_fasta = rf.read_multiple_fasta(file_name)
+                    print(multiple_fasta)
+                    
+                    # Ask the user what he wants to convert into what : DNA to RNA, RNA to Protein, or DNA to protein
+                    user_choice_conversion = input("""\nWhat do you want to convert?\n
+                                                1 = DNA -> RNA
+                                                2 = RNA -> Protein
+                                                3 = DNA -> Protein\n
+                    Your choice: """)
+                    
+                    # if the user wants to convert the DNA sequence into RNA sequence
+                    if user_choice_conversion == "1":
+                        # print the transcripted RNA by using the transcription function from the converter.py file
+                        print(mn.transcription(multiple_fasta))
+
+                    # if the user wants to convert the RNA sequence into Protein sequence
+                    if user_choice_conversion == "2":
+                        # print the traducted amino acids by using the traduction function from the converter.py file
+                        print(mn.traduction(multiple_fasta))
+
+                    # if the user wants to convert the DNA sequence into Protein sequence
+                    if user_choice_conversion == "3" :
+                        # print the amino acids which has been translated into RNA before by using first the translation function and then the traduction function from the converter.py file
+                        print(mn.traduction(transcription(multiple_fasta)))
+        
         # if the user wants to use a text file            
-        if user_choice_args == "2":
+        if user_choice_args == "3":
             user_input_text = input("Write your fasta sequence :\n")
             # Ask the user what he wants to convert into what : DNA to RNA, RNA to Protein, or DNA to protein
             user_choice_conversion = input("""\nWhat do you want to convert?\n
@@ -195,46 +224,15 @@ def main():
                 # ask the user again what he wants to choose
                 return main()
                 
-   
-    
-    if users_choice_envs == "2" :
-        file_name = input("\nChoose your Fasta file: ")
-        if rf.control_fasta(file_name):
-            if rf.erreur_fasta(file_name):
-                multiple_fasta = rf.read_multiple_fasta(file_name)
-                print(multiple_fasta)
-                
-                # Ask the user what he wants to convert into what : DNA to RNA, RNA to Protein, or DNA to protein
-                user_choice_conversion = input("""\nWhat do you want to convert?\n
-                                            1 = DNA -> RNA
-                                            2 = RNA -> Protein
-                                            3 = DNA -> Protein\n
-                Your choice: """)
-                
-                # if the user wants to convert the DNA sequence into RNA sequence
-                if user_choice_conversion == "1":
-                    # print the transcripted RNA by using the transcription function from the converter.py file
-                    print(mn.transcription(multiple_fasta))
-
-                # if the user wants to convert the RNA sequence into Protein sequence
-                if user_choice_conversion == "2":
-                    # print the traducted amino acids by using the traduction function from the converter.py file
-                    print(mn.traduction(multiple_fasta))
-
-                # if the user wants to convert the DNA sequence into Protein sequence
-                if user_choice_conversion == "3" :
-                    # print the amino acids which has been translated into RNA before by using first the translation function and then the traduction function from the converter.py file
-                    print(mn.traduction(transcription(multiple_fasta)))
-
     
     
      # if the user wants to use the Interface
-    if users_choice_envs == "3" :
+    if users_choice_envs == "2" :
         # Excecute graphic_interface.py
         gi.interface_tkinter()
     
     else:
-        if users_choice_envs != "1" and users_choice_envs != "2" and users_choice_envs != "3":
+        if users_choice_envs != "1" and users_choice_envs != "2":
             # return an error phrase
             print("You must choose a number between 1, 2 and 3")
             # ask the user again what he wants to choose

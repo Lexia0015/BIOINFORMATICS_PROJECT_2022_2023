@@ -112,14 +112,11 @@ def split(file_gtf, fasta_sequence, start, end):
         end_position = pandas_gene.iloc[:,4] 
         # print(start_position)
         # print(end_position)
-        
         # convert the values of every start position in the table into a list and keep it in a variable
         start_position_list = start_position.values.tolist()
         # convert the values of every end position in the table into a list and keep it in a variable
         end_position_list = end_position.values.tolist()
-
-        print(start_position_list[0])
-        print(end_position_list)
+        print(start_position_list)
         
         # this part begins the analysis of the fasta sequence with the gtf file
         # create an empty list
@@ -131,8 +128,6 @@ def split(file_gtf, fasta_sequence, start, end):
         fasta_sequence_gtf = "".join(liste)
         # return the fasta sequence
         return fasta_sequence_gtf
-
-
 
 def erreur_fasta(fasta_file): 
     """
@@ -218,16 +213,10 @@ def erreur_gtf(gtf_file):
         if ltr != "+" and ltr != "-" and ltr != ".": 
             # Raise an exception telling the user that the column can only contain +,- and . symbols
             raise Exception("The Strand column can only contain the + and - symbols")
-    # for every entry in the third "feature" column
-    # for feature in pandas_gtf.iloc[:, 2]:
-    #         # if there is no gene, exon or CDS in the feature column
-    #         if  feature != "gene" or "exon" or "CDS":
-    #             # Raise an exception that the feature must contain these entries
-    #             raise Exception("The feature must contain: gene, exon and CDS!")
     # for every entry in the eighth "frame" column    
     for frame in pandas_gtf.iloc[:, 7]:
         # if the row entry is not in the range 0-2 or .
-        if frame != "." and frame not in ['0', '1', '2']:
+        if frame not in ["0", "1", "2"] and frame != ".":
             # Raise an exception that the frame value is not correct
             raise Exception("The frame value is not correct !")
     # for score in the sixth "frame" column
@@ -236,14 +225,15 @@ def erreur_gtf(gtf_file):
         if score != "." and score != "0" and score != "1":
             # Raise an exception that the score value is not correct
             raise Exception("The score is not a numeric value !")
-    # for start in the fourth column
-    # for start in pandas_gtf.iloc[:,3]:
-    #     # fort end in the fifth column
-    #     for end in pandas_gtf.iloc[:,4]:
-    #         # if the start is bigger than the end
-    #         if start>end:
-    #             # raise an exception with the following message
-    #             raise Exception("The start must be smaller than the end !")
+    for start, end in zip(pandas_gtf.iloc[:,3], pandas_gtf.iloc[:,4]) : 
+            # if the start is bigger than the end
+        if start>end:
+            # raise an exception with the following message
+            raise Exception("The start must be smaller than the end !")
+        if end<start:
+            # raise an exception with the following message
+            raise Exception("The end must be bigger than the start !")
+            
 
     
     return True

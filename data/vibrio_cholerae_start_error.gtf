@@ -1,0 +1,20 @@
+#!genome-build ASM209775v1
+#!genome-version ASM209775v1
+#!genome-build-accession GCA_002097755.1
+#!genebuild-last-updated 2017-05
+NODE_1_length_828395_cov_28.5229_ID_1	ena	gene	and	147	.	-	.	gene_id "B7947_05540"; gene_source "ena"; gene_biotype "protein_coding";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	transcript	1	147	.	-	.	gene_id "B7947_05540"; transcript_id "ORP13715"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	exon	1	147	.	-	.	gene_id "B7947_05540"; transcript_id "ORP13715"; exon_number "1"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding"; exon_id "ORP13715-1";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	CDS	1	147	.	-	0	gene_id "B7947_05540"; transcript_id "ORP13715"; exon_number "1"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding"; protein_id "ORP13715";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	start_codon	145	147	.	-	0	gene_id "B7947_05540"; transcript_id "ORP13715"; exon_number "1"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	gene	po	498	.	+	.	gene_id "B7947_05545"; gene_source "ena"; gene_biotype "protein_coding";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	transcript	229	498	.	+	.	gene_id "B7947_05545"; transcript_id "ORP13716"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	exon	229	498	.	+	.	gene_id "B7947_05545"; transcript_id "ORP13716"; exon_number "1"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding"; exon_id "ORP13716-1";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	CDS	229	495	.	+	0	gene_id "B7947_05545"; transcript_id "ORP13716"; exon_number "1"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding"; protein_id "ORP13716";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	start_codon	229	231	.	+	0	gene_id "B7947_05545"; transcript_id "ORP13716"; exon_number "1"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	stop_codon	496	498	.	+	0	gene_id "B7947_05545"; transcript_id "ORP13716"; exon_number "1"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	gene	dkqff	1271	.	-	.	gene_id "B7947_05550"; gene_source "ena"; gene_biotype "protein_coding";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	transcript	960	1271	.	-	.	gene_id "B7947_05550"; transcript_id "ORP13717"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	exon	960	1271	.	-	.	gene_id "B7947_05550"; transcript_id "ORP13717"; exon_number "1"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding"; exon_id "ORP13717-1";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	CDS	963	1271	.	-	0	gene_id "B7947_05550"; transcript_id "ORP13717"; exon_number "1"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding"; protein_id "ORP13717";
+NODE_1_length_828395_cov_28.5229_ID_1	ena	start_codon	1269	1271	.	-	0	gene_id "B7947_05550"; transcript_id "ORP13717"; exon_number "1"; gene_source "ena"; gene_biotype "protein_coding"; transcript_source "ena"; transcript_biotype "protein_coding";

@@ -53,7 +53,7 @@ def interface_tkinter():
     label_choose.config(bg = "lightblue")
     
     # create a text window for the fasta file or to entry text, set the size, font and fontsize and keep it in a variable
-    enter_fasta = scrolledtext.ScrolledText(window, width = 80, height = 15, font = ("Arial", 12))
+    enter_fasta = tk.Text(window, width = 80, height = 15, font = ("Arial", 12))
     # set the position of the text window within the interface window  
     enter_fasta.grid(row = 2, column = 0, columnspan = 2, padx = 40)
 
@@ -83,10 +83,39 @@ def interface_tkinter():
     # set the position of the button within the interface window
     buttom_fasta_file.grid(row = 3, column = 0, pady = 20)   
     
+    
+    def select_multi_fasta():
+        # allow the user to select a file of different type (fasta type) from the local server and keep it in a variable
+        file_name = filedialog.askopenfilename(title="Select a multiple fasta", filetypes=(("fasta files", "*.fa"), ("all files", "*.*")))
+        # extract the sequence from the selected file by using the fasta() function in the read_file.py and keep it in a variable
+        file = rf.fasta(file_name)
+        # insert the sequence in the text window
+        enter_fasta.insert(INSERT, file)
+        
+    # create a button with the request to add a fasta file, use the select_multi_fasta() function as a command when pressing the button and keep it in a variable
+    buttom_fasta_file_multiple = tk.Button(window, text = "Add a Multiple Fasta file", command = select_multi_fasta)
+    # set the position of the button within the interface window
+    buttom_fasta_file_multiple.grid(row = 3, column = 2)   
+    
+    
+    # create a label for start
+    entry_start_label = tk.Label(window, text = "Start index of the GTF")
+    # show the label of start in tkinter according to the positions
+    entry_start_label.grid(row = 4, column = 0)
+    # create a label for start
+    entry_end_label = tk.Label(window, text = "End index of the GTF")
+    # show the label of end in tkinter according to the positions
+    entry_end_label.grid(row = 4, column = 1)
+    
+    # create a start entry
     entry_start = tk.Entry(window)
-    entry_start.grid(row = 4, column = 1)
+    # show the start entry in the tkinter window according to the positions
+    entry_start.grid(row = 5, column = 0)
+    # create a start entry
     entry_end = tk.Entry(window)
-    entry_end.grid(row = 4, column=2, pady = 30)
+    # show the end entry in the tkinter window according to the positions
+    entry_end.grid(row = 5, column=1)
+    
     
     
     def select_gtf_gff_fasta(): 
@@ -96,18 +125,16 @@ def interface_tkinter():
                 Sequence fasta with the positions start and end from the gtf file.
         """
         # if the text window is empty
-        if enter_fasta.get("1.0",'end-1c') == "":
+        if enter_fasta.get("1.0",'end-1c') == "" :
             # add a label error with the following message
             label_error["text"] = "You must firstly choose a fasta file or enter a sequence"
             
         # if the text window is not empty
-        if enter_fasta.get("1.0",'end-1c') != 0:
+        if enter_fasta.get("1.0",'end-1c') != 0 and entry_start.get() != 0 and entry_end.get() != 0:
             # put the sequence from the text window into a variable
             file_name = enter_fasta.get("1.0",'end-1c')
             # allow the user to select a gtf, gff or different type file from the local server and keep it in a variable    
             file_gtf = filedialog.askopenfilename(title="Select a file", filetypes=(("gtf files", "*.gtf"), ("gff files", "*.gff3"), ("gff files", "*.gff"), ("all files", "*.*")))
-
-
             # extract the wanted sequence from the fasta sequence at the positions written in the gtf file by using the split() function from the read_file.py and keep it in a variable
             file_gtf_res = rf.split(file_gtf, file_name, int(entry_start.get()), int(entry_end.get()))
             
@@ -118,26 +145,26 @@ def interface_tkinter():
 
         
             
-
+    
     
         
 
     # create a button which tells the user to add a gtf/gff file, use the select_gft_gff_fasta() function as a command when pressing the button and keep it in a variable
     buttom_gtf_gff_file = tk.Button(window, text = "Add a GTF/GFF file", command = select_gtf_gff_fasta)
     # set the position of the button within the interface window
-    buttom_gtf_gff_file.grid(row = 4, column = 0, pady = 20)
+    buttom_gtf_gff_file.grid(row = 3, column = 1, pady = 20)
     
     # create a results label and set the font and fontsize
     label_resulttext = tk.Label(window, text = "Result:", font=("Arial", 15))
     # set the position of the results label
-    label_resulttext.grid(row= 6, column= 0, columnspan=1)
+    label_resulttext.grid(row= 7, column= 0, columnspan=1)
     # set the background color of the results label to light blue
     label_resulttext.config(bg = "lightblue")
     
     # create a scrolled text field, set the size, font and fontsize and keep it in a variable
     label_result = scrolledtext.ScrolledText(window, width = 75, height = 8, font = ("Arial", 12))
     # set the position of the scrolled text field wihtin the interface window
-    label_result.grid(row = 7, column = 0, columnspan = 3)
+    label_result.grid(row = 8, column = 0, columnspan = 3)
     
     
     def validate():
@@ -225,7 +252,7 @@ def interface_tkinter():
     # create a validation button, set the width, use the validate() function as a command when pressing the button and keep it in a variable
     button_validate = tk.Button(window, text = "Validate", width = 15, relief=tk.RAISED, command = validate)
     # set the position of the validation button
-    button_validate.grid(row = 5, column = 1, pady = 15, padx = 5)
+    button_validate.grid(row = 6, column = 1, pady = 15, padx = 5)
     
     
     def clean_text(): 
@@ -250,7 +277,7 @@ def interface_tkinter():
     # create a clean button, set its width, use the clean_text() function as a command when pressing the button and keep it in a variable
     button_clean = tk.Button(window, text = "Clean", width = 15, relief=tk.RAISED, command = clean_text) 
     # set the position of the clean button in the interface window 
-    button_clean.grid(row = 5, column = 0, pady = 15, padx = 5)
+    button_clean.grid(row = 6, column = 0, pady = 15, padx = 5)
 
 
     def quit():
@@ -267,7 +294,7 @@ def interface_tkinter():
     # create a quit button, set its width, use the quit() function as a command when pressing the button and keep it in a variable
     button_quit = tk.Button(window, text = "Quit", width = 15, relief=tk.RAISED, command = quit) 
     # set the position of the quit button within the interface window
-    button_quit.grid(row = 5, column = 2, pady = 15, padx = 5)
+    button_quit.grid(row = 6, column = 2, pady = 15, padx = 5)
     
     def save_results():
         """
@@ -286,7 +313,7 @@ def interface_tkinter():
     # create a save button, set the width, use the save_result() function as a command when pressing the button and keep it in a variable
     button_save = tk.Button(window, text = "Save", width = 15, relief=tk.RAISED, command = save_results) 
     # set the position of the save button within the interface window
-    button_save.grid(row = 3, column = 2, pady = 15)
+    button_save.grid(row = 4, column = 2, pady = 15)
     
     
 
