@@ -2,6 +2,7 @@
 
 ## Compatibility of the program
 The program is compatible with MacOS, Windows, and Unix (Ubuntu and others), as long as you have a **terminal** or an updated version of** Python (3.10.4)**.
+It shoud also work on Python 3.9.7.
 Please make sure you have the right version of python, or try to update with anaconda (if you're using a Bash terminal).
 
 ## How to run the program
