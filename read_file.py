@@ -163,7 +163,7 @@ def erreur_fasta(fasta_file):
         # if the character is different thant A, and B, and C, and N, and T
         if char != "A" and char != "G" and char != "C" and char != "T" and char != "N":
             # Raise and exception based on the following message
-            raise Exception("La sequence contient des autres lettres que A G C T N")
+            raise Exception("The sequence constains letters others than A G C T N")
     # close the fasta file
     file_open_fasta.close()
     return True

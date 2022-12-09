@@ -53,9 +53,13 @@ def main():
                 start = int(input("Choose an index fort start :"))
                 # create an end where the user can choose a number
                 end = int(input("Choose an index for the end : "))
+                # if the control_fasta function is true:
                 if rf.control_fasta(file_name):
+                    # if the control_gtf function is true:
                     if rf.control_gtf(gtf_file_name):
+                        # if the erreur_fasta function is true:
                         if rf.erreur_fasta(file_name):
+                            # if the erreur_gtf function is true
                             if rf.erreur_gtf(gtf_file_name):
 
                                 # Get the sequence from the result of the fasta function and keep it in a variable
@@ -95,7 +99,9 @@ def main():
                     
             # if the user does not want to add a gtf file            
             if user_choice_file_gtf == "n":
+                # if the control_fasta function is true:
                 if rf.control_fasta(file_name):
+                    # if the erreur_fasta function is true:
                     if rf.erreur_fasta(file_name):
                     # Get the sequence from the result of the fasta function and keep it in a variable
                         fasta_file = rf.fasta(file_name)
@@ -136,11 +142,17 @@ def main():
                     # ask the user again what he wants to choose
                     return main()
         
+        # if the user chooses to analyse a multiple fasta
         if user_choice_args == "2" :
+            # Ask the user to write the path of the fasta file he wants to use and keep it in a variable
             file_name = input("\nChoose your Fasta file: ")
+            # if the control_fasta function is true:
             if rf.control_fasta(file_name):
+                # if the erreur_fasta function is true:
                 if rf.erreur_fasta(file_name):
+                    # run the read_multiple_fasta from the read_file.py and keep it in a variable
                     multiple_fasta = rf.read_multiple_fasta(file_name)
+                    # print the result
                     print(multiple_fasta)
                     
                     # Ask the user what he wants to convert into what : DNA to RNA, RNA to Protein, or DNA to protein
@@ -167,6 +179,7 @@ def main():
         
         # if the user wants to use a text file            
         if user_choice_args == "3":
+            # Ask the user to write the sequence
             user_input_text = input("Write your fasta sequence :\n")
             # Ask the user what he wants to convert into what : DNA to RNA, RNA to Protein, or DNA to protein
             user_choice_conversion = input("""\nWhat do you want to convert?\n
@@ -212,12 +225,14 @@ def main():
                 print(mn.traduction(transcription(user_input_text)))
             
             else:
+                # if the user doesn't choose 1 or 2 or 3:
                 if user_choice_conversion != "1" and user_choice_conversion != "2" and user_choice_conversion != "3":
                     # return an error phrase
                     print("You must choose a number between 1 and 3")
                     # ask the user again what he wants to choose
                     return main()  
         else:
+            # if the user doesn't choose 1 or 2:
             if user_choice_args != "1" and user_choice_args != "2" :
                 # return an error phrase
                 print("You must choose a number between 1 and 2")
@@ -232,6 +247,7 @@ def main():
         gi.interface_tkinter()
     
     else:
+        # if the user doesn't choose 1 or 2:
         if users_choice_envs != "1" and users_choice_envs != "2":
             # return an error phrase
             print("You must choose a number between 1, 2 and 3")
