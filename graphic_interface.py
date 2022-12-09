@@ -60,7 +60,7 @@ def interface_tkinter():
     # create a label error that will show an error if the content is not correct for analysis
     label_error = tk.Label(window, text = "", font =("Arial", 12))
     # set the position of the label whithin the interface
-    label_error.grid(row = 6, column = 1)
+    label_error.grid(row = 7, column = 1)
     # set the backgroung color of the label to light blue
     label_error.config(bg = "lightblue")
 
@@ -69,7 +69,7 @@ def interface_tkinter():
         """
             Function that allows the user to insert a wanted fasta file and that extracts the sequence returned from the fasta() function from the read_fle.py
             Returns :
-                Sequence fasta inserted in the text label.
+                Sequence fasta inserted in the text box.
         """
         # allow the user to select a file of different type (fasta type) from the local server and keep it in a variable
         file_name = filedialog.askopenfilename(title="Select a file", filetypes=(("fasta files", "*.fa"), ("all files", "*.*")))
@@ -85,10 +85,15 @@ def interface_tkinter():
     
     
     def select_multi_fasta():
+        """
+            Function that allows the user to insert a wanted multiple fasta file and that extracts the sequence returned from the read_multiple_fasta() function from the read_fle.py
+            Returns :
+                Sequence fasta inserted in the text box.
+        """
         # allow the user to select a file of different type (fasta type) from the local server and keep it in a variable
         file_name = filedialog.askopenfilename(title="Select a multiple fasta", filetypes=(("fasta files", "*.fa"), ("all files", "*.*")))
         # extract the sequence from the selected file by using the fasta() function in the read_file.py and keep it in a variable
-        file = rf.fasta(file_name)
+        file = rf.read_multiple_fasta(file_name)
         # insert the sequence in the text window
         enter_fasta.insert(INSERT, file)
         
