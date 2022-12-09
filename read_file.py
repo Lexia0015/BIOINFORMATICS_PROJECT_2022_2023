@@ -223,7 +223,8 @@ def erreur_gtf(gtf_file):
             raise Exception("The Strand column can only contain the + and - symbols")
     # for every entry in the third "feature" column
     # for feature in pandas_gtf.iloc[:, 2]:
-    #     # if the row entry is not a possible features
+    # TODO FOR FANNY TO VERIFY THE CONTENT OF FEATURE GTF FILE AND ADD ONE IF NEEDED (FOR EXAMPLE ADD BIOLOGICAL_BINDING_SITE TO THE LIST)
+    #     # if the row entry is not a possible features 
     #     if feature not in ["gene", "CDS", "start_codon", "stop_codon", "5UTR", "3UTR", "inter", "inter_CNS", "intron_CNS", "exon", "chromosome", "biological_region", "mRNA", "ncRNA_gene", "lnc_RNA"]:
     #         # Raise an exception telling the user which feature every entry must consist of the list here
     #         raise Exception("The feature must contain : CDS, start_codon, end_codon, gene or homology")
@@ -237,6 +238,7 @@ def erreur_gtf(gtf_file):
     for score in pandas_gtf.iloc[:, 5]:
         if score != "." and score != "0" and score != "1":
             raise Exception("The score is not a numeric value !")
+    # TODO VERIFY IF THE START AND THE END WORKS
     # for start in pandas_gtf.iloc[:,3]:
     #     for end in pandas_gtf.iloc[:,4]:
     #         if start>end:
@@ -251,46 +253,52 @@ def erreur_gtf(gtf_file):
         
     
 def read_multiple_fasta(fasta_file):
-    fasta = {}
     with open(fasta_file) as multiple_fasta:
+        fasta = {}
+        sequence_id = ''
+        sequence_fasta = []
         for line in multiple_fasta:
-            line = line.strip()
-            if line.startswith(">"):
-                sequence_id = line[1:]
-                if sequence_id not in fasta:
-                    fasta[sequence_id] = []
-                continue
-            sequence = line
-            fasta[sequence_id].append(sequence)
-        # for value in fasta.values():
-        #     fasta_values = "".join(str(value))
-        fasta_values = ' '.join(map(str, fasta.values()))
-        fasta_sequences = fasta_values.replace(",", "")
+            if line.startswith(">") and sequence_id == '':
+                sequence_id = line.split(' ')[0]
+            elif line.startswith(">") and sequence_id != '':
+                fasta[sequence_id] = ''.join(sequence_fasta)
+                sequence_id = line.split(' ')[0]
+                sequence_fasta = []
+            else:
+                sequence_fasta.append(line.rstrip())
+        fasta[sequence_id] = ''.join(sequence_fasta)
         
-    return fasta_sequences
-    
-    
+        list_sequence = []
+        for i in fasta.values():
+            list_sequence.append("".join(i))
+        
+        for i in list_sequence:
+            newList = list()
+            newList.append(i)
+            # print(newList)
+            # list_sequence = newList
+        
+        
+        
+        # return newList
+        # for line in my_list:
+        #     print(line.split())
+        # my_list = [list("\n".join(i.split())) for i in fasta.values()]
+        # return my_list
+        # for v in fasta.values():
+        #     sequence_multi = str(v)
+        # return sequence_multi
+        # sequence_multi = fasta.values()
+        # return sequence_multi
+        # return fasta.values()
 
 
 
 
 if __name__ == "__main__":
     file_name = input("Path file fasta: " )
-    file_gtf = input("Path file gtf: ")
-    # if control(file_name, file_gtf):
-    #     if erreur(file_name, file_gtf):
-    #         fasta_sequence = fasta(file_name)
-    # print(fasta_sequence)
-    # gtf_split = split(file_gtf, fasta_sequence)
-    # # print(gtf_split)
     print(read_multiple_fasta(file_name))
     
-    print(ct.transcription(read_multiple_fasta(file_name)))
-        # print(fasta(file_name))
-        # print("NO")
-    
-    # print(control())
-    # print(erreur())
 
     # gtf_analysis = split(file_gtf, fasta_sequence)
     # print(gtf_analysis)

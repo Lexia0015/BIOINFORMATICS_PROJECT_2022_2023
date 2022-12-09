@@ -164,7 +164,7 @@ def main():
     if users_choice_envs == "2" :
         # Excecute graphic_interface.py
         gi.interface_tkinter()
-
+    
     else:
         if users_choice_envs != "1" and users_choice_envs != "2" :
             # return an error phrase

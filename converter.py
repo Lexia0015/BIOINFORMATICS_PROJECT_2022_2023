@@ -17,11 +17,11 @@ def transcription(sequence:str) -> str:
         Returns:
             sequence_RNA (str) : sequence translated into RNA
     """
-    # for char in sequence:
-    #     # if there is a T nucleotide in the sequence
-    #     if char == "U":
-    #         # Raise an exception to tell the user the sequence is a DNA sequence and must be transcripted first
-    #         raise Exception("The sequence must be an DNA sequence and not RNA.")
+    for char in sequence:
+        # if there is a U nucleotide in the sequence
+        if char == "U":
+            # Raise an exception to tell the user the sequence is a DNA sequence and must be transcripted first
+            raise Exception("The sequence must be an DNA sequence and not RNA.")
     # convert the sequence into a list and keep it in a variable
     list_transcript = list(sequence)
     # for each letter in the range 0 to the length of the sequence

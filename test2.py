@@ -43,24 +43,24 @@
 # infile = io.StringIO(FASTA)
 # print(infile.read())
 
-def fasta_parse():
-    file_name = input("Path file fasta: " )
-    with open(file_name, "r") as infile:
-        # print(infile.read())
-#         fasta_content_file = file_fasta_read.readlines()
-        key = ''
-        for line in infile:
-            if line.startswith('>'):
-                if key:
-                    yield key, val
-                key, val = line[1:].rstrip().split()[0], ''
-            elif key:
-                val += line.rstrip()
-        if key:
-            yield  key, val
-        print(key, "\n", val)
+# def fasta_parse():
+#     file_name = input("Path file fasta: " )
+#     with open(file_name, "r") as infile:
+#         # print(infile.read())
+# #         fasta_content_file = file_fasta_read.readlines()
+#         key = ''
+#         for line in infile:
+#             if line.startswith('>'):
+#                 if key:
+#                     yield key, val
+#                 key, val = line[1:].rstrip().split()[0], ''
+#             elif key:
+#                 val += line.rstrip()
+#         if key:
+#             yield  key, val
+#         print(key, "\n", val)
 
-print('\n'.join('%s: %s' % keyval for keyval in fasta_parse()))
+# print('\n'.join('%s: %s' % keyval for keyval in fasta_parse()))
 
 # print(fasta_parse())
 
@@ -86,3 +86,27 @@ print('\n'.join('%s: %s' % keyval for keyval in fasta_parse()))
 
 
 # suprim gitignore
+
+def fasta2dict(fil):
+    """
+    Read fasta-format file fil, return dict of form scaffold:sequence.
+    Note: Uses only the unique identifier of each sequence, rather than the 
+    entire header, for dict keys. 
+    """
+    dic = {}
+    cur_scaf = ''
+    cur_seq = []
+    for line in open(fil):
+        if line.startswith(">") and cur_scaf == '':
+            cur_scaf = line.split(' ')[0]
+        elif line.startswith(">") and cur_scaf != '':
+            dic[cur_scaf] = ''.join(cur_seq)
+            cur_scaf = line.split(' ')[0]
+            cur_seq = []
+        else:
+            cur_seq.append(line.rstrip())
+    dic[cur_scaf] = ''.join(cur_seq)
+    return dic
+
+fil = input("fasta : ")
+print(fasta2dict(fil))
