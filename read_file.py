@@ -267,39 +267,20 @@ def read_multiple_fasta(fasta_file):
             else:
                 sequence_fasta.append(line.rstrip())
         fasta[sequence_id] = ''.join(sequence_fasta)
-        
-        list_sequence = []
-        for i in fasta.values():
-            list_sequence.append("".join(i))
-        
-        for i in list_sequence:
-            newList = list()
-            newList.append(i)
-            # print(newList)
-            # list_sequence = newList
-        
-        
-        
-        # return newList
-        # for line in my_list:
-        #     print(line.split())
-        # my_list = [list("\n".join(i.split())) for i in fasta.values()]
-        # return my_list
-        # for v in fasta.values():
-        #     sequence_multi = str(v)
-        # return sequence_multi
-        # sequence_multi = fasta.values()
-        # return sequence_multi
-        # return fasta.values()
+        # print(fasta.values())
+        list_sequence = ""
+        for v in fasta.values():
+            list_sequence = list_sequence + "\n" + v
+        return list_sequence
 
 
 
 
 if __name__ == "__main__":
     file_name = input("Path file fasta: " )
-    print(read_multiple_fasta(file_name))
-    
-
+    # print(read_multiple_fasta(file_name))
+    # print(rf.transcription(read_multiple_fasta(file_name)))
+    print(rf.traduction(rf.transcription(read_multiple_fasta(file_name))))
     # gtf_analysis = split(file_gtf, fasta_sequence)
     # print(gtf_analysis)
     
