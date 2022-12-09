@@ -146,7 +146,7 @@ def erreur_fasta(fasta_file):
     # if the len of the sequence is zero
     if len(file_content_fasta) == 0:
         # Raise an exception based on the following message
-        raise Exception("La séquence rentrée est incorrecte (= 0)")
+        raise Exception("The sequence is empty !")
     # else if the first line starts with ">":
     elif file_content_fasta[0].startswith(">"):
         # everything is okay and how it should be
@@ -163,7 +163,7 @@ def erreur_fasta(fasta_file):
         # if the character is different thant A, and B, and C, and N, and T
         if char != "A" and char != "G" and char != "C" and char != "T" and char != "N":
             # Raise and exception based on the following message
-            raise Exception("The sequence constains letters others than A G C T N")
+            raise Exception("The sequence contains letters others than A G C T N")
     # close the fasta file
     file_open_fasta.close()
     return True
