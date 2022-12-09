@@ -53,7 +53,7 @@ def interface_tkinter():
     label_choose.config(bg = "lightblue")
     
     # create a text window for the fasta file or to entry text, set the size, font and fontsize and keep it in a variable
-    enter_fasta = tk.Text(window, width = 80, height = 15, font = ("Arial", 12))
+    enter_fasta = scrolledtext.ScrolledText(window, width = 80, height = 15, font = ("Arial", 12))
     # set the position of the text window within the interface window  
     enter_fasta.grid(row = 2, column = 0, columnspan = 2, padx = 40)
 
@@ -83,6 +83,10 @@ def interface_tkinter():
     # set the position of the button within the interface window
     buttom_fasta_file.grid(row = 3, column = 0, pady = 20)   
     
+    entry_start = tk.Entry(window)
+    entry_start.grid(row = 4, column = 1)
+    entry_end = tk.Entry(window)
+    entry_end.grid(row = 4, column=2, pady = 30)
     
     
     def select_gtf_gff_fasta(): 
@@ -102,8 +106,10 @@ def interface_tkinter():
             file_name = enter_fasta.get("1.0",'end-1c')
             # allow the user to select a gtf, gff or different type file from the local server and keep it in a variable    
             file_gtf = filedialog.askopenfilename(title="Select a file", filetypes=(("gtf files", "*.gtf"), ("gff files", "*.gff3"), ("gff files", "*.gff"), ("all files", "*.*")))
+
+
             # extract the wanted sequence from the fasta sequence at the positions written in the gtf file by using the split() function from the read_file.py and keep it in a variable
-            file_gtf_res = rf.split(file_gtf, file_name)
+            file_gtf_res = rf.split(file_gtf, file_name, int(entry_start.get()), int(entry_end.get()))
             
             # delete the text in the text field
             enter_fasta.delete('1.0', tk.END)

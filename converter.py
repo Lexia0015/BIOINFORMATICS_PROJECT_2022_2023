@@ -81,7 +81,7 @@ def traduction(sequence_rna:str, protein_sequence=""):
            'UGG':'W', 'CGG':'R', 'AGG':'R', 'GGG':'G'}
     
     # put the rows of the RNA sequence into one long string by replacing the line break with an empty string
-    sequence_rna.replace("\n", "")
+    sequence_rna.replace("\n", " ")
     # for every nucleotide in the RNA sequence
     for char in sequence_rna:
         # if there is a T nucleotide in the sequence

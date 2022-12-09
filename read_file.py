@@ -83,13 +83,16 @@ def fasta(file_name):
 
 
 
-def split(file_gtf, fasta_sequence): 
+def split(file_gtf, fasta_sequence, start, end): 
     """
         It will read the gtf or gff file
-        Take the position of the gene and extract the portion of the gene in the fasta file
-        
-        Args:
-        
+        Take the position of the gene and extract the portion of the gene in the fasta file    
+    Args:
+        file_gtf : gtf file containing the positions start and end
+        fasta_sequence : the return of the function fasta() containing the fasta sequence
+
+    Returns:
+        fasta_sequence_gtf : the fasta sequence that begans with the start and ends with the end collected from the gtf file
     """
     # open the gtf file in read mode and keep it in a variable named gtf_file
     with open(file_gtf, "r") as gtf_file:
@@ -122,10 +125,6 @@ def split(file_gtf, fasta_sequence):
         # create an empty list
         liste = []
         
-        # create a start where the user can choose a number
-        start = int(input("Choose an index fort start :"))
-        # create an end where the user can choose a number
-        end = int(input("Choose an index for the end : "))
         # append to a list the fasta sequence that begins with the start and ends with the end
         liste.append(fasta_sequence[int(start_position_list[start]):int(end_position_list[end])])
         # convert the list into a string and keep it in a variable
@@ -170,9 +169,10 @@ def erreur_fasta(fasta_file):
         if char != "A" and char != "G" and char != "C" and char != "T" and char != "N":
             # Raise and exception based on the following message
             raise Exception("La sequence contient des autres lettres que A G C T N")
+    # close the fasta file
     file_open_fasta.close()
-    
     return True
+
 
 def erreur_gtf(gtf_file):
     """
@@ -182,9 +182,6 @@ def erreur_gtf(gtf_file):
         Returns:
             Error (str) : an error message if it doesn't match
     """
-    # # open the gtf file in read mode and keep it in a variable
-    # gtf_file = open(file_gtf, "r")
-
     # give every column in the gtf file a name
     pandas_columns = ["chromosome", "source", "feature", "start", "end", "score", "strand", "frame", "attribute"]
     # read the gtf file, convert it into a table and keep it in a variable
@@ -223,65 +220,76 @@ def erreur_gtf(gtf_file):
             raise Exception("The Strand column can only contain the + and - symbols")
     # for every entry in the third "feature" column
     # for feature in pandas_gtf.iloc[:, 2]:
-    # TODO FOR FANNY TO VERIFY THE CONTENT OF FEATURE GTF FILE AND ADD ONE IF NEEDED (FOR EXAMPLE ADD BIOLOGICAL_BINDING_SITE TO THE LIST)
-    #     # if the row entry is not a possible features 
-    #     if feature not in ["gene", "CDS", "start_codon", "stop_codon", "5UTR", "3UTR", "inter", "inter_CNS", "intron_CNS", "exon", "chromosome", "biological_region", "mRNA", "ncRNA_gene", "lnc_RNA"]:
-    #         # Raise an exception telling the user which feature every entry must consist of the list here
-    #         raise Exception("The feature must contain : CDS, start_codon, end_codon, gene or homology")
+    #         # if there is no gene, exon or CDS in the feature column
+    #         if  feature != "gene" or "exon" or "CDS":
+    #             # Raise an exception that the feature must contain these entries
+    #             raise Exception("The feature must contain: gene, exon and CDS!")
     # for every entry in the eighth "frame" column    
     for frame in pandas_gtf.iloc[:, 7]:
         # if the row entry is not in the range 0-2 or .
         if frame != "." and frame not in ['0', '1', '2']:
             # Raise an exception that the frame value is not correct
             raise Exception("The frame value is not correct !")
-        
+    # for score in the sixth "frame" column
     for score in pandas_gtf.iloc[:, 5]:
+        # if score is different than ".", 0 and 1 :
         if score != "." and score != "0" and score != "1":
+            # Raise an exception that the score value is not correct
             raise Exception("The score is not a numeric value !")
-    # TODO VERIFY IF THE START AND THE END WORKS
+    # for start in the fourth column
     # for start in pandas_gtf.iloc[:,3]:
+    #     # fort end in the fifth column
     #     for end in pandas_gtf.iloc[:,4]:
+    #         # if the start is bigger than the end
     #         if start>end:
+    #             # raise an exception with the following message
     #             raise Exception("The start must be smaller than the end !")
-    
-    # close the fasta file
 
-    # close the gtf file
-    # gtf_file.close()
-    # return True
+    
     return True
         
     
-def read_multiple_fasta(fasta_file):
+def read_multiple_fasta(fasta_file:str):
+    """
+        Function that reads a multiple fasta file
+        Args:
+            fasta_file (str): fasta file containing different sequences separated by ">"
+        Returns: sequences without the sequence ID
+    """
+    # open the multiple fasta file and keep it in a variable named multiple_fasta
     with open(fasta_file) as multiple_fasta:
+        # create an empty dictionnary
         fasta = {}
+        # create an empty string
         sequence_id = ''
+        # create an empty list
         sequence_fasta = []
+        #for line in the multiple fasta file
         for line in multiple_fasta:
+            # if the line starts with ">" and the string sequence_id is empty
             if line.startswith(">") and sequence_id == '':
+                # take the ID of the sequence
                 sequence_id = line.split(' ')[0]
+            # else if line starts with ">" and the string of the sequence_id is not empty
             elif line.startswith(">") and sequence_id != '':
+                # add the ID in the fasta as a key, and the sequence as a value
                 fasta[sequence_id] = ''.join(sequence_fasta)
+                # takes another ID of another sequence
                 sequence_id = line.split(' ')[0]
+                # creates an empty list
                 sequence_fasta = []
             else:
+                # add the line in the empty list
                 sequence_fasta.append(line.rstrip())
+        # add the ID in the fasta as a key, and the sequence as a value     
         fasta[sequence_id] = ''.join(sequence_fasta)
-        # print(fasta.values())
+        # create an empty string
         list_sequence = ""
+        # for values in the fasta dictionnary values:
         for v in fasta.values():
+            # add values to the dictionnary
             list_sequence = list_sequence + "\n" + v
+        # return the sequences of the multiple fasta
         return list_sequence
 
-
-
-
-if __name__ == "__main__":
-    file_name = input("Path file fasta: " )
-    # print(read_multiple_fasta(file_name))
-    # print(rf.transcription(read_multiple_fasta(file_name)))
-    print(rf.traduction(rf.transcription(read_multiple_fasta(file_name))))
-    # gtf_analysis = split(file_gtf, fasta_sequence)
-    # print(gtf_analysis)
-    
     

@@ -1,0 +1,32 @@
+##gff-version 3
+#!gff-spec-version 1.21
+#!processor NCBI annotwriter
+#!genome-build ASM676v1
+#!genome-build-accession NCBI_Assembly:GCF_000006765.1
+##sequence-region NC_002516.2 1 6264404
+##species https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=208964
+NC_002516.2	RefSeq	region	1	6264404	.	+	.	ID=NC_002516.2:1..6264404;Dbxref=taxon:208964;Is_circular=true;Name=ANONYMOUS;gbkey=Src;genome=chromosome;mol_type=genomic DNA;strain=PAO1
+NC_002516.2	RefSeq	gene	483	2027	.	+	.	ID=gene-PA0001;Dbxref=GeneID:878417;Name=dnaA;gbkey=Gene;gene=dnaA;gene_biotype=protein_coding;locus_tag=PA0001
+NC_002516.2	RefSeq	CDS	483	2027	.	+	0	ID=cds-NP_064721.1;Parent=gene-PA0001;Dbxref=Genbank:NP_064721.1,GeneID:878417;Name=NP_064721.1;Note=Product name confidence: class 2 (High similarity to functionally studied protein);gbkey=CDS;gene=dnaA;locus_tag=PA0001;product=chromosome replication initiator DnaA;protein_id=NP_064721.1;transl_table=11
+NC_002516.2	RefSeq	gene	2056	3159	.	+	.	ID=gene-PA0002;Dbxref=GeneID:879244;Name=dnaN;gbkey=Gene;gene=dnaN;gene_biotype=protein_coding;locus_tag=PA0002
+NC_002516.2	RefSeq	CDS	2056	3159	.	+	0	ID=cds-NP_064722.1;Parent=gene-PA0002;Dbxref=Genbank:NP_064722.1,GeneID:879244;Name=NP_064722.1;Note=Product name confidence: class 2 (High similarity to functionally studied protein);gbkey=CDS;gene=dnaN;locus_tag=PA0002;product=DNA polymerase III subunit beta;protein_id=NP_064722.1;transl_table=11
+NC_002516.2	RefSeq	gene	3169	4278	.	+	.	ID=gene-PA0003;Dbxref=GeneID:879229;Name=recF;gbkey=Gene;gene=recF;gene_biotype=protein_coding;locus_tag=PA0003
+NC_002516.2	RefSeq	CDS	3169	4278	.	+	0	ID=cds-NP_064723.1;Parent=gene-PA0003;Dbxref=Genbank:NP_064723.1,GeneID:879229;Name=NP_064723.1;Note=Product name confidence: class 2 (High similarity to functionally studied protein);gbkey=CDS;gene=recF;locus_tag=PA0003;product=DNA replication and repair protein RecF;protein_id=NP_064723.1;transl_table=11
+NC_002516.2	RefSeq	gene	4275	6695	.	+	.	ID=gene-PA0004;Dbxref=GeneID:879230;Name=gyrB;gbkey=Gene;gene=gyrB;gene_biotype=protein_coding;locus_tag=PA0004
+NC_002516.2	RefSeq	CDS	4275	6695	.	+	0	ID=cds-NP_064724.1;Parent=gene-PA0004;Dbxref=Genbank:NP_064724.1,GeneID:879230;Name=NP_064724.1;Note=Product name confidence: class 2 (High similarity to functionally studied protein);gbkey=CDS;gene=gyrB;locus_tag=PA0004;product=DNA gyrase subunit B;protein_id=NP_064724.1;transl_table=11
+NC_002516.2	RefSeq	gene	8050	7791	.	-	.	ID=gene-PA0005;Dbxref=GeneID:877576;Name=lptA;gbkey=Gene;gene=lptA;gene_biotype=protein_coding;locus_tag=PA0005
+NC_002516.2	RefSeq	CDS	7018	7791	.	-	0	ID=cds-NP_064725.1;Parent=gene-PA0005;Dbxref=Genbank:NP_064725.1,GeneID:877576;Name=NP_064725.1;Note=Product name confidence: class 1 (Function experimentally demonstrated in P. aeruginosa);gbkey=CDS;gene=lptA;locus_tag=PA0005;product=lysophosphatidic acid acyltransferase;protein_id=NP_064725.1;transl_table=11
+NC_002516.2	RefSeq	gene	7803	8339	.	-	.	ID=gene-PA0006;Dbxref=GeneID:879245;Name=PA0006;gbkey=Gene;gene_biotype=protein_coding;locus_tag=PA0006
+NC_002516.2	RefSeq	CDS	7803	8339	.	-	0	ID=cds-NP_064726.1;Parent=gene-PA0006;Dbxref=Genbank:NP_064726.1,GeneID:879245;Name=NP_064726.1;Note='Product name confidence: class 4 (Homologs of previously reported genes of unknown function%2C or no similarity to any previously reported sequences)';gbkey=CDS;locus_tag=PA0006;product=D-glycero-beta-D-manno-heptose-1%2C7-bisphosphate 7-phosphatase;protein_id=NP_064726.1;transl_table=11
+NC_002516.2	RefSeq	gene	8671	10377	.	+	.	ID=gene-PA0007;Dbxref=GeneID:877575;Name=PA0007;gbkey=Gene;gene_biotype=protein_coding;locus_tag=PA0007
+NC_002516.2	RefSeq	CDS	8671	10377	.	+	0	ID=cds-NP_064727.1;Parent=gene-PA0007;Dbxref=Genbank:NP_064727.1,GeneID:877575;Name=NP_064727.1;Note='Product name confidence: class 4 (Homologs of previously reported genes of unknown function%2C or no similarity to any previously reported sequences)';gbkey=CDS;locus_tag=PA0007;product=hypothetical protein;protein_id=NP_064727.1;transl_table=11
+NC_002516.2	RefSeq	gene	10434	12488	.	-	.	ID=gene-PA0008;Dbxref=GeneID:878214;Name=glyS;gbkey=Gene;gene=glyS;gene_biotype=protein_coding;locus_tag=PA0008
+NC_002516.2	RefSeq	exon	298816	298892	.	-	.	ID=exon-PA0263.1-1;Parent=rna-PA0263.1;Dbxref=GeneID:3240233;gbkey=tRNA;locus_tag=PA0263.1;product=tRNA-Arg
+NC_002516.2	RefSeq	protein_binding_site	299136	299148	.	+	.	ID=id-NC_002516.2:299136..299148;Dbxref=CollecTF:EXPSITE_0000fd50;Note=Transcription factor binding site for NP_252075.~Evidence of regulation for: PA0264;bound_moiety=AmrZ;experiment=ChIP-Seq [PMID: 24603766],RNA-Seq [PMID: 24603766];gbkey=protein_bind
+NC_002516.2	RefSeq	gene	299522	300973	.	+	.	ID=gene-PA0265;Dbxref=GeneID:881913;Name=gabD;gbkey=Gene;gene=gabD;gene_biotype=protein_coding;locus_tag=PA0265
+NC_002516.2	RefSeq	CDS	299522	300973	.	+	0	ID=cds-NP_248956.1;Parent=gene-PA0265;Dbxref=Genbank:NP_248956.1,GeneID:881913;Name=NP_248956.1;Note=Product name confidence: class 2 (High similarity to functionally studied protein);gbkey=CDS;gene=gabD;locus_tag=PA0265;product=glutarate-semialdehyde dehydrogenase DavD;protein_id=NP_248956.1;transl_table=11
+NC_002516.2	RefSeq	gene	301218	302498	.	+	.	ID=gene-PA0266;Dbxref=GeneID:880917;Name=PA0266;gbkey=Gene;gene_biotype=protein_coding;locus_tag=PA0266
+NC_002516.2	RefSeq	CDS	301218	302498	.	+	0	ID=cds-NP_248957.1;Parent=gene-PA0266;Dbxref=Genbank:NP_248957.1,GeneID:880917;Name=NP_248957.1;Note=Product name confidence: class 2 (High similarity to functionally studied protein);gbkey=CDS;locus_tag=PA0266;product=5-aminovalerate aminotransferase DavT;protein_id=NP_248957.1;transl_table=11
+NC_002516.2	RefSeq	gene	302824	304023	.	+	.	ID=gene-PA0267;Dbxref=GeneID:880697;Name=PA0267;gbkey=Gene;gene_biotype=protein_coding;locus_tag=PA0267
+NC_002516.2	RefSeq	CDS	302824	304023	.	+	0	ID=cds-NP_248958.1;Parent=gene-PA0267;Dbxref=Genbank:NP_248958.1,GeneID:880697;Name=NP_248958.1;Note='Product name confidence: class 4 (Homologs of previously reported genes of unknown function%2C or no similarity to any previously reported sequences)';gbkey=CDS;locus_tag=PA0267;product=hypothetical protein;protein_id=NP_248958.1;transl_table=11
+NC_002516.2	RefSeq	gene	304177	305598	.	-	.	ID=gene-PA0268;Dbxref=GeneID:880732;Name=PA0268;gbkey=Gene;gene_biotype=protein_coding;locus_tag=PA0268
